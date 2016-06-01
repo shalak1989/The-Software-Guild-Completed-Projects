@@ -1,0 +1,6 @@
+C:\Users\admin\Documents\bitbucket\james-ware-individual-work\HelloGuild\HelloGuild\bin\Debug\HelloGuild.exe.config
+C:\Users\admin\Documents\bitbucket\james-ware-individual-work\HelloGuild\HelloGuild\bin\Debug\HelloGuild.exe
+C:\Users\admin\Documents\bitbucket\james-ware-individual-work\HelloGuild\HelloGuild\bin\Debug\HelloGuild.pdb
+C:\Users\admin\Documents\bitbucket\james-ware-individual-work\HelloGuild\HelloGuild\obj\Debug\HelloGuild.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\bitbucket\james-ware-individual-work\HelloGuild\HelloGuild\obj\Debug\HelloGuild.exe
+C:\Users\admin\Documents\bitbucket\james-ware-individual-work\HelloGuild\HelloGuild\obj\Debug\HelloGuild.pdb

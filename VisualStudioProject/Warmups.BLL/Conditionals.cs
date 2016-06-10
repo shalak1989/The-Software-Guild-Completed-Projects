@@ -72,7 +72,8 @@ SumDouble(2, 2) -> 8
             throw new NotImplementedException();
         }
 
-        /* Given an int n, return the absolute value of the difference between n 
+        /* Given an int n, return the absolute value of the 
+        difference between n 
         and 21, except 
 return double the absolute value of the difference if n is over 21. 
 
@@ -105,7 +106,7 @@ ParrotTrouble(false, 6) -> false
 
 */
 
-        public bool ParrotTrouble(bool isTalking, int hour)///HELP!!! testcase?
+        public bool ParrotTrouble(bool isTalking, int hour)///
         {
             if (isTalking == true && hour < 7 || hour > 20)
             {
@@ -117,7 +118,8 @@ ParrotTrouble(false, 6) -> false
             }
         }
 
-        /* Given two ints, a and b, return true if one if them is 10 or if 
+        /* Given two ints, a and b, return true if one if them 
+        is 10 or if 
         their sum is 10. 
 
 Makes10(9, 10) -> true
@@ -179,9 +181,9 @@ PosNeg(-4, -5, true) -> true
 
 */
 
-        public bool PosNeg(int a, int b, bool negative)// HELP!!!
+        public bool PosNeg(int a, int b, bool negative)
         {
-            if (negative == true && a == -a && b == -b)
+            if (negative == true && a < 0 && b < 0)
             {
                 return true;
             }
@@ -323,7 +325,8 @@ Multiple3or5(8) -> false
             }
         }
 
-        /* Given a string, return true if the string starts with "hi" and false 
+        /* Given a string, return true if the string starts with "hi" and
+      `  false 
         otherwise. 
 
 StartHi("hi there") -> true
@@ -331,14 +334,14 @@ StartHi("hi") -> true
 StartHi("high up") -> false
 */
 
-        public bool StartHi(string str)//HELP!!!
+        public bool StartHi(string str)
         {
             if (str.Substring(0, 2) == "hi" && str.Length == 2)
             {
                 return true;
             }
 
-            else if (str.Substring(0, 2) == "hi" && str.Substring(3, 1) == "")
+            else if (str.Substring(0, 2) == "hi" && str.Substring(2, 1) == " ")
             {
                 return true;
             }
@@ -483,5 +486,168 @@ IxStart("piz snacks") -> false
                 return false;
             }
         }
+
+        /* Given a string, return a string made of the first 2 chars (if present), 
+        however include first char only if it is 'o' and include the second only 
+        if it is 'z', so "ozymandias" yields "oz". 
+
+StartOz("ozymandias") -> "oz"
+StartOz("bzoo") -> "z"
+StartOz("oxx") -> "o"
+*/
+
+        public string StartOz(string str)
+        {
+            if (str.Substring(0, 1) == "o" && str.Substring(1, 1) == "z")
+            {
+                return str.Substring(0, 1) + str.Substring(1, 1);
+            }
+            else if (str.Substring(0, 1) == "o")
+            {
+                return str.Substring(0, 1);
+            }
+            else if (str.Substring(1, 1) == "z")
+            {
+                return str.Substring(1, 1);
+            }
+            else
+            {
+                return ("String did not contain a o or a z");
+            }
+        }
+
+        /* Given three int values, a b c, return the largest. 
+
+Max(1, 2, 3) -> 3
+Max(1, 3, 2) -> 3
+Max(3, 2, 1) -> 3
+*/
+
+        public int Max(int a, int b, int c)
+        {
+            if (a > b && a > c)
+            {
+                return a;
+            }
+            else if (b > a && b > c)
+            {
+                return b;
+            }
+            else
+            {
+                return c;
+            }
+        }
+
+        /* Given 2 int values, return whichever value is nearest to the value 10,
+        or return 0 in the event of a tie. 
+
+Closer(8, 13) -> 8
+Closer(13, 8) -> 8
+Closer(13, 7) -> 0
+*/
+
+        public int Closer(int a, int b)
+        {
+            if (Math.Abs(a - 10) < Math.Abs(b - 10))
+            {
+                return a;
+            }
+            else if (Math.Abs(b - 10) < Math.Abs(a - 10))
+            {
+                return b;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        /* Return true if the given string contains between 1 and 3 'e' chars. 
+
+GotE("Hello") -> true
+GotE("Heelle") -> true
+GotE("Heelele") -> false
+*/
+
+        public bool GotE(string str)
+        {
+            int eCount = 0;
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str.Substring(i, 1) == "e")
+                {
+                    eCount++;
+                }
+            }
+            if (eCount >= 1 && eCount <= 3)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+            /* Given a string, return a new string where the last 3 chars are now 
+in upper case. If the string has less than 3 chars, uppercase whatever is there. 
+
+EndUp("Hello") -> "HeLLO"
+EndUp("hi there") -> "hi thERE"
+EndUp("hi") -> "HI"
+*/
+
+        public string EndUp(string str)
+        {
+            if (str.Length < 3)
+            {
+                return str.ToUpper();
+            }
+            else
+            {
+                return str.Substring(0, (str.Length - 3)) +
+                str.Substring((str.Length - 3), 3).ToUpper();   
+            }
+        }
+
+        /* Given a non-empty string and an int N, return the string made 
+        starting with char 0, and then every Nth char of the string. 
+        So if N is 3, use char 0, 3, 6, ... and so on. N is 1 or more. 
+
+EveryNth("Miracle", 2) -> "Mrce"
+EveryNth("abcdefg", 2) -> "aceg"
+EveryNth("abcdefg", 3) -> "adg"
+*/
+
+        public string EveryNth(string str, int n)
+        {
+            string resultChar = "";
+
+            for (int i = 0; i < str.Length; i = i + n)
+            {
+                resultChar += str.Substring(i, 1);
+            }
+
+            return resultChar;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
+        

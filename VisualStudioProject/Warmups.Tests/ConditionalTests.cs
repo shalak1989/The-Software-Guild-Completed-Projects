@@ -67,7 +67,7 @@ namespace Warmups.Tests
             Conditionals obj = new Conditionals();
 
             bool actual = obj.ParrotTrouble(a, b);
-            
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -97,9 +97,9 @@ namespace Warmups.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(1, -1, false)]
-        [TestCase(-1, 1, false)]
-        [TestCase(-4, -5, true)]
+        [TestCase(1, -1, false,  false)]
+        [TestCase(-1, 1, false, false)]
+        [TestCase(-4, -5, true, true)]
         public void PosNeg(int a, int b, bool c, bool expected)//HELP!!!
         {
             Conditionals obj = new Conditionals();
@@ -121,7 +121,7 @@ namespace Warmups.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase("kitten",  1, "ktten")]
+        [TestCase("kitten", 1, "ktten")]
         [TestCase("kitten", 0, "itten")]
         [TestCase("kitten", 4, "kittn")]
         public void MissingChar(string a, int b, string expected)
@@ -265,9 +265,78 @@ namespace Warmups.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase("ozymandias", "oz")]
+        [TestCase("bzoo", "z")]
+        [TestCase("oxx", "o")]
+        public void StartOz(string a, string expected)
+        {
+            Conditionals obj = new Conditionals();
+
+            string actual = obj.StartOz(a);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(1, 2, 3, 3)]
+        [TestCase(1, 3, 2, 3)]
+        [TestCase(3, 2, 1, 3)]
+        public void Max(int a, int b, int c, int expected)
+        {
+            Conditionals obj = new Conditionals();
+
+            int actual = obj.Max(a, b, c);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(8, 13, 8)]
+        [TestCase(13, 8, 8)]
+        [TestCase(13, 7, 0)]
+        public void Closer(int a, int b, int expected)
+        {
+            Conditionals obj = new Conditionals();
+
+            int actual = obj.Closer(a, b);
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestCase("Hello", true)]
+        [TestCase("Heelle", true)]
+        [TestCase("Heelele", false)]
+        public void GotE(string a, bool expected)
+        {
+            Conditionals obj = new Conditionals();
+
+            bool actual = obj.GotE(a);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase("Hello", "HeLLO")]
+        [TestCase("hi there", "hi thERE")]
+        [TestCase("hi", "HI")]
+        public void EndUp(string a, string expected)
+        {
+            Conditionals obj = new Conditionals();
+
+            string actual = obj.EndUp(a);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase("Miracle", 2, "Mrce")]
+        [TestCase("abcdefg", 2, "aceg")]
+        [TestCase("abcdefg", 3, "adg")]
+        public void EveryNth(string a, int b, string expected)
+        {
+            Conditionals obj = new Conditionals();
+
+            string actual = obj.EveryNth(a, b);
+
+            Assert.AreEqual(expected, actual);
+        }
+
     }
-
-
-
-        
 }

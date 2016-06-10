@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Warmups.BLL
 {
-    public class Strings
+    public class Strings 
     {
         // Given a string name, e.g. "Bob", return a greeting of the form "Hello Bob!". 
         public string SayHi(string name)
@@ -462,8 +462,10 @@ TweakFront("abed") -> "abed"
 
         }
 
-        /* Given a string, if the first or last chars are 'x', return the string 
-        without those 'x' chars, and otherwise return the string unchanged. 
+        /* Given a string, if the first or last chars are 'x', 
+        return the string 
+        without those 'x' chars, and otherwise return the 
+        string unchanged. 
 
 StripX("xHix") -> "Hi"
 StripX("xHi") -> "Hi"

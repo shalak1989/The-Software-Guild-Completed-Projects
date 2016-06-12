@@ -149,8 +149,41 @@ namespace Warmups.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 1, 2, 0})]
+        [TestCase(new int[] { 2, 3, 5 }, new int[] { 2, 0, 5 })]
+        [TestCase(new int[] { 1, 2, 1 }, new int[] { 1, 2, 1 })]
+        public void Fix23Test(int[] a, int[] expected)
+        {
+            Arrays obj = new Arrays();
 
+            int[] actual = obj.Fix23(a);
 
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 3, 4, 5 }, true)]
+        [TestCase(new int[] { 2, 1, 3, 4, 5 }, true)]
+        [TestCase(new int[] { 1, 1, 1 }, false)]
+        public void Unlucky1Test(int[] a, bool expected)
+        {
+            Arrays obj = new Arrays();
+
+            bool actual = obj.Unlucky1(a);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+       // [TestCase(new int[] { 4, 5 }, new int[] { 1, 2, 3 }, new int[] { 4, 5})]
+        [TestCase(new int[] { 4 }, new int[] { 1, 2, 3 }, new int[] { 4, 1 })]
+       // [TestCase(new int[] {}, new int[] { 1, 2 }, new int[] { 1, 2 })]
+        public void Make2Test(int[] a, int[] b, int[] expected)
+        { 
+            Arrays obj = new Arrays();
+
+            int[] actual = obj.make2(a, b);
+
+            Assert.AreEqual(expected, actual);
+        }
 
 
 

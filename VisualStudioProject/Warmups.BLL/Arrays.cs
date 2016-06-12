@@ -242,6 +242,84 @@ Double23({2, 3, 2, 2}) -> false
             }
         }
 
+        /* Given an int array length 3, if there is a 2 in the array immediately followed by a 3, 
+        set the 3 element to 0. Return the changed array. 
+
+Fix23({1, 2, 3}) ->{1, 2, 0}
+Fix23({2, 3, 5}) -> {2, 0, 5}
+Fix23({1, 2, 1}) -> {1, 2, 1}
+*/
+
+        public int[] Fix23(int[] numbers)
+        {
+            if (numbers[0] == 2 && numbers [1] == 3)
+            {
+                numbers[1] = 0;
+            }
+            else if (numbers[1] == 2 && numbers [2] == 3)
+            {
+                numbers[2] = 0;
+            }
+            return numbers;
+        }
+
+        /* We'll say that a 1 immediately followed by a 3 in an array is an "unlucky" 1. 
+Return true if the given array contains an unlucky 1 in the first 2 or last 2 positions in the array. 
+
+Unlucky1({1, 3, 4, 5}) -> true
+Unlucky1({2, 1, 3, 4, 5}) -> true
+Unlucky1({1, 1, 1}) -> false
+*/
+
+        public bool Unlucky1(int[] numbers)
+        {
+            if (numbers[numbers.Length-2] == 1 && numbers[numbers.Length-1] == 3)
+            {
+                return true;
+            }
+            else if (numbers[0] == 1 && numbers[1] == 3 || numbers[1] == 1 && numbers[2] == 3)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /* Given 2 int arrays, a and b, return a new array length 2 containing, as much as will fit, 
+        the elements from a followed by the elements from b. The arrays may be any length, including 0,
+        but there will be 2 or more elements available between the 2 arrays. 
+
+Make2({4, 5}, {1, 2, 3}) -> {4, 5}
+Make2({4}, {1, 2, 3}) -> {4, 1}
+Make2({}, {1, 2}) -> {1, 2}
+*/
+
+        public int[] make2(int[] a, int[] b)
+        {
+           int[] numbers2 = new int[2];
+
+            for (int i = 0; i < numbers2.Length; i++)
+            {
+                if (i < a.Length && a.Length > 0)
+                {
+                    numbers2[i] = a[i];
+                    if (a.Length == 1)
+                    {
+                        numbers2[1] = b[0];
+                        break;
+                    }
+                }
+                
+                else
+                {
+                    numbers2[i] = b[i];
+                }                
+            }
+            return numbers2;
+        }
+
 
 
 

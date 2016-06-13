@@ -340,16 +340,18 @@ DoNotYak("pakyak") -> "pak"
 DoNotYak("yak123ya") -> "123ya"
 */
 
-      /*  public string DoNotYak(string str)
+        public string DoNotYak(string str)
         {
             string yakString = "";
-            for (int i = 0; i < str.Length; i++)
+            for (int i = 0; i < str.Length - 2; i++)
             {
-                yakString = yakString + str.Substring(i, 1); 
+                if (str.Substring(i, 3).Contains("yak"))
+                {
+                    yakString = str.Remove(i, 3);
+                }
             }
-            if (yakString.Contains("yk"))
                 return yakString;
-        }*/
+        }
 
         /* Given an array of ints, return the number of times that two 6's are next to each other in the array. 
         Also count instances where the second "6" is actually a 7. 

@@ -177,41 +177,41 @@ namespace Warmups.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 6, 6, 2 }, 1)]
-        [TestCase(new int[] { 6, 6, 2, 6 }, 1)]
-        [TestCase(new int[] { 6, 7, 2, 6 }, 1)]
-        public void Array667(int[] a, int expected)
-        {
-            Loops obj = new Loops();
+    [TestCase(new int[] { 6, 6, 2 }, 1)]
+    [TestCase(new int[] { 6, 6, 2, 6 }, 1)]
+    [TestCase(new int[] { 6, 7, 2, 6 }, 1)]
+    public void Array667(int[] a, int expected)
+    {
+        Loops obj = new Loops();
 
-            int actual = obj.Array667(a);
+        int actual = obj.Array667(a);
 
-            Assert.AreEqual(expected, actual);
-        }
+        Assert.AreEqual(expected, actual);
+    }
 
-        [TestCase(new int[] { 1, 1, 2, 2, 1 }, true)]
-        [TestCase(new int[] { 1, 1, 2, 2, 2, 1 }, false)]
-        [TestCase(new int[] { 1, 1, 1, 2, 2, 2, 1 }, false)]
-        public void NoTriplesTest(int[] a, bool expected)
-        {
-            Loops obj = new Loops();
+    [TestCase(new int[] { 1, 1, 2, 2, 1 }, true)]
+    [TestCase(new int[] { 1, 1, 2, 2, 2, 1 }, false)]
+    [TestCase(new int[] { 1, 1, 1, 2, 2, 2, 1 }, false)]
+    public void NoTriplesTest(int[] a, bool expected)
+    {
+        Loops obj = new Loops();
 
-            bool actual = obj.NoTriples(a);
+        bool actual = obj.NoTriples(a);
 
-            Assert.AreEqual(expected, actual);
-        }
+        Assert.AreEqual(expected, actual);
+    }
 
-        [TestCase(new int[] { 1, 2, 7, 1 }, true)]
-        [TestCase(new int[] { 1, 2, 8, 1 }, false)]
-        [TestCase(new int[] { 2, 7, 1 }, true)]
-        public void Pattern51Test(int[] a, bool expected)
-        {
-            Loops obj = new Loops();
+    [TestCase(new int[] { 1, 2, 7, 1 }, true)]
+    [TestCase(new int[] { 1, 2, 8, 1 }, false)]
+    [TestCase(new int[] { 2, 7, 1 }, true)]
+    public void Pattern51Test(int[] a, bool expected)
+    {
+        Loops obj = new Loops();
 
-            bool actual = obj.Pattern51(a);
+        bool actual = obj.Pattern51(a);
 
-            Assert.AreEqual(expected, actual);
-        }
+        Assert.AreEqual(expected, actual);
+    }
 
 
 

@@ -36,7 +36,7 @@ namespace Warmups.Tests
         [TestCase("abcxx", 1)]
         [TestCase("xxx", 2)]
         [TestCase("xxxx", 3)]
-        public void CountXXTest(string a, int expected) 
+        public void CountXXTest(string a, int expected)
         {
             Loops obj = new Loops();
 
@@ -93,7 +93,7 @@ namespace Warmups.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 1, 2, 9}, 1)]
+        [TestCase(new int[] { 1, 2, 9 }, 1)]
         [TestCase(new int[] { 1, 9, 9 }, 2)]
         [TestCase(new int[] { 1, 9, 9, 3, 9 }, 3)]
         public void Count9Test(int[] a, int expected)
@@ -152,6 +152,79 @@ namespace Warmups.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase("kittens", "kien")]
+        [TestCase("Chocolate", "Chole")]
+        [TestCase("CodingHorror", "Congrr")]
+        public void AltPairsTest(string a, string expected)
+        {
+            Loops obj = new Loops();
+
+            string actual = obj.AltPairs(a);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase("yakpak", "pak")]
+        [TestCase("pakyak", "pak")]
+        [TestCase("yak123ya", "123ya")]
+        public void DoNotYakTest(string a, string expected)
+        {
+            Loops obj = new Loops();
+
+            string actual = obj.DoNotYak(a);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 6, 6, 2 }, 1)]
+        [TestCase(new int[] { 6, 6, 2, 6 }, 1)]
+        [TestCase(new int[] { 6, 7, 2, 6 }, 1)]
+        public void Array667(int[] a, int expected)
+        {
+            Loops obj = new Loops();
+
+            int actual = obj.Array667(a);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 1, 2, 2, 1 }, true)]
+        [TestCase(new int[] { 1, 1, 2, 2, 2, 1 }, false)]
+        [TestCase(new int[] { 1, 1, 1, 2, 2, 2, 1 }, false)]
+        public void NoTriplesTest(int[] a, bool expected)
+        {
+            Loops obj = new Loops();
+
+            bool actual = obj.NoTriples(a);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 7, 1 }, true)]
+        [TestCase(new int[] { 1, 2, 8, 1 }, false)]
+        [TestCase(new int[] { 2, 7, 1 }, true)]
+        public void Pattern51Test(int[] a, bool expected)
+        {
+            Loops obj = new Loops();
+
+            bool actual = obj.Pattern51(a);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

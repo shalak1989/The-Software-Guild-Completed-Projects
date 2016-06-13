@@ -57,11 +57,11 @@ CountXX("xxxx") -> 3
             int xCount = 0;
             for (int i = 0; i < str.Length - 1; i++)
             {
-                if (str[i] == 'x' && str[i+1] == 'x')
+                if (str[i] == 'x' && str[i + 1] == 'x')
                 {
                     xCount++;
                 }
-     
+
             }
             return xCount;
         }
@@ -98,7 +98,7 @@ EveryOther("Heeololeo") -> "Hello"
         {
             string newEveryOther = "";
 
-            for (int i = 0; i < str.Length; i+=2)
+            for (int i = 0; i < str.Length; i += 2)
             {
                 newEveryOther = newEveryOther + str.Substring(i, 1);
             }
@@ -145,12 +145,12 @@ CountLast2("axxxaaxx") -> 2
 
             for (int i = 0; i < str.Length - 2; i++)
             {
-                if (str.Substring(i, 2) == str.Substring((str.Length-2), 2) )
+                if (str.Substring(i, 2) == str.Substring((str.Length - 2), 2))
                 {
                     stringCount++;
                 }
             }
-                return stringCount;
+            return stringCount;
         }
 
         /* Given an array of ints, return the number of 9's in the array. 
@@ -280,6 +280,173 @@ StringX("xabxxxcdx") -> "xabcdx"
             }
             return beginX + newStringX + endX;
         }
+
+        /* Given a string, return a string made of the chars at indexes 0,1, 4,5, 8,9 ... so "kittens" 
+        yields "kien". 
+
+            index 0
+            index 1
+
+            index 4
+            index 5
+
+            index 8
+            index 9
+
+            return 1, then 1, 
+            go up by three
+
+            return 1, then 1,
+            go up by 4
+
+            return 1 then 1,
+
+AltPairs("kitten") -> "kien"
+AltPairs("Chocolate") -> "Chole"
+AltPairs("CodingHorror") -> "Congrr"
+*/
+
+        public string AltPairs(string str)
+        {
+            string newString = "";
+            for (int i = 0; i < str.Length; i += 4)
+            {
+                if (i + 1 > str.Length - 1)
+                {   
+                    newString = newString + str.Substring((str.Length -1), 1);
+                    break;
+                }
+                newString = newString + str.Substring(i, 1) + str.Substring((i + 1), 1);
+                
+            }
+               return newString;  
+        }
+
+
+
+
+        /*  str.Substring(0, 1)
+          str.Substring(1, 1)
+          str.Substring(4, 1)
+          str.Substring(5, 1)
+          str.Substring(8, 1)
+          str.Substring(9, 1)*/
+
+        /* Suppose the string "yak" is unlucky. Given a string, return a version where all the "yak" are 
+        removed, but the "a" can be any char. The "yak" strings will not overlap. 
+
+DoNotYak("yakpak") -> "pak"
+DoNotYak("pakyak") -> "pak"
+DoNotYak("yak123ya") -> "123ya"
+*/
+
+      /*  public string DoNotYak(string str)
+        {
+            string yakString = "";
+            for (int i = 0; i < str.Length; i++)
+            {
+                yakString = yakString + str.Substring(i, 1); 
+            }
+            if (yakString.Contains("yk"))
+                return yakString;
+        }*/
+
+        /* Given an array of ints, return the number of times that two 6's are next to each other in the array. 
+        Also count instances where the second "6" is actually a 7. 
+
+Array667({6, 6, 2}) -> 1
+Array667({6, 6, 2, 6}) -> 1
+Array667({6, 7, 2, 6}) -> 1
+*/
+
+        public int Array667(int[] numbers)
+        {
+           int numberOfTimes = 0;
+
+            for (int i = 0; i < numbers.Length - 1; i++)
+            {
+                if (numbers[i] == 6 && numbers[(i + 1)] == 6 || numbers[i] == 6 && numbers[(i + 1)] == 7)
+                {
+                    numberOfTimes++;
+                }
+            }
+            return numberOfTimes;
+        }
+
+        /* Given an array of ints, we'll say that a triple is a value appearing 3 times in a row in the array. 
+        Return true if the array does not contain any triples. 
+
+NoTriples({1, 1, 2, 2, 1}) -> true
+NoTriples({1, 1, 2, 2, 2, 1}) -> false
+NoTriples({1, 1, 1, 2, 2, 2, 1}) -> false
+*/
+
+        public bool NoTriples(int[] numbers)
+        {
+            
+            for (int i = 0; i < numbers.Length - 2; i++)
+            {
+               if (numbers[i] == numbers[(i + 1)] && numbers[i] == numbers[(i + 2)])
+                {
+                    return false;
+                }
+            }
+            return true;
+            
+        }
+
+        /* Given an array of ints, return true if it contains a 2, 7, 1 pattern -- a value, followed by the 
+        value plus 5, followed by the value minus 1.
+
+Pattern51({1, 2, 7, 1}) -> true
+Pattern51({1, 2, 8, 1}) -> false
+Pattern51({2, 7, 1}) -> true
+*/
+
+        public bool Pattern51(int[] numbers)
+        {
+            
+            for (int i = 0; i < numbers.Length - 1; i++)
+            {
+                if (numbers[i] + 5 == numbers[(i+1)] && numbers[i] - 1 == numbers[(i+2)])
+                {
+                    return true;
+                }
+
+            }
+            return false;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

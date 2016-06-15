@@ -18,6 +18,7 @@ namespace BattleShip.UI
             
             obj.menuStart();
             game.setUpPlayer1();
+            game.setUpPlayer2();
             //game.setUpPlayer2();
 
         }

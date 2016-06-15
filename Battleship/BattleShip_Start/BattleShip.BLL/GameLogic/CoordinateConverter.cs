@@ -9,59 +9,49 @@ namespace BattleShip.BLL.GameLogic
     public class CoordinateConverter
     {
         string convertString = "";
-        public string Validation(string userCoordInput)
+        public int Validation(string userCoordInput)
         {
             if (userCoordInput.Substring(0, 1).ToLower() == "a")
             {
-                convertString = "1" + userCoordInput.Substring(1);
-                return convertString;
+                return 1;
             }
             else if (userCoordInput.Substring(0, 1).ToLower() == "b")
             {
-                convertString = "2" + userCoordInput.Substring(1);
-                return convertString;
+                return 2;
             }
             else if (userCoordInput.Substring(0, 1).ToLower() == "c")
             {
-                convertString = "3" + userCoordInput.Substring(1);
-                return convertString;
+                return 3;
             }
             else if (userCoordInput.Substring(0, 1).ToLower() == "d")
             {
-                convertString = "4" + userCoordInput.Substring(1);
-                return convertString;
+                return 4;
             }
             else if (userCoordInput.Substring(0, 1).ToLower() == "e")
             {
-                convertString = "5" + userCoordInput.Substring(1);
-                return convertString;
+                return 5;
             }
             else if (userCoordInput.Substring(0, 1).ToLower() == "f")
             {
-                convertString = "6" + userCoordInput.Substring(1);
-                return convertString;
+                return 6;
             }
             else if (userCoordInput.Substring(0, 1).ToLower() == "g")
             {
-                convertString = "7" + userCoordInput.Substring(1);
-                return convertString;
+                return 7;
             }
             else if (userCoordInput.Substring(0, 1).ToLower() == "h")
             {
-                convertString = "8" + userCoordInput.Substring(1);
-                return convertString;
+                return 8;
             }
             else if (userCoordInput.Substring(0, 1).ToLower() == "i")
             {
-                convertString = "9" + userCoordInput.Substring(1);
-                return convertString;
+                return 9;
             }
             else if (userCoordInput.Substring(0, 1).ToLower() == "j")
             {
-                convertString = "10" + userCoordInput.Substring(1);
-                return convertString;
+                return 10;
             }
-            return "enter a valid coordinate";
+            return -1;
             
         }
         

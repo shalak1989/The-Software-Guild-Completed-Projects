@@ -14,22 +14,22 @@ namespace BattleShip.BLL.GameLogic
         {
             if (userDirectionInput.ToLower() == "up")
             {
-                intDirection = 0;
+                intDirection = 2;
                 return intDirection;
             }
             else if (userDirectionInput.ToLower() == "down")
             {
-                intDirection = 1;
+                intDirection = 3;
                 return intDirection;
             }
             else if (userDirectionInput.ToLower() == "left")
             {
-                intDirection = 2;
+                intDirection = 0;
                 return intDirection;
             }
             else if (userDirectionInput.ToLower() == "right")
             {
-                intDirection = 3;
+                intDirection = 1;
                 return intDirection;
             }
             else return -1;

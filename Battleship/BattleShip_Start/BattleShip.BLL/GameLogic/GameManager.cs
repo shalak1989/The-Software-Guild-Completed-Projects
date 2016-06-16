@@ -38,8 +38,8 @@ namespace BattleShip.BLL.GameLogic
                 {
                     Console.WriteLine("Player 1 enter your coordinates for your Destroyer: ");
                     destroyerCoords = Console.ReadLine();
-                    destroyerYCoordinate = valid.Validation(destroyerCoords);
-                    destroyerXCoordinate = int.Parse(destroyerCoords.Substring(1));
+                    destroyerXCoordinate = valid.Validation(destroyerCoords);
+                    destroyerYCoordinate = int.Parse(destroyerCoords.Substring(1));
                     if (destroyerYCoordinate != -1 && destroyerXCoordinate < 11)
                         isValidInput = true;
                 }
@@ -91,8 +91,8 @@ namespace BattleShip.BLL.GameLogic
                 {
                     Console.WriteLine("Player 1 enter your coordinates for your Submarine: ");
                     submarineCoords = Console.ReadLine();
-                    submarineYCoordinate = valid.Validation(submarineCoords);
-                    submarineXCoordinate = int.Parse(submarineCoords.Substring(1));
+                    submarineXCoordinate = valid.Validation(submarineCoords);
+                    submarineYCoordinate = int.Parse(submarineCoords.Substring(1));
                     if (submarineYCoordinate != -1 && submarineXCoordinate < 11)
                         isValid2Input = true;
                 }
@@ -144,8 +144,8 @@ namespace BattleShip.BLL.GameLogic
                 {
                     Console.WriteLine("Player 1 enter your coordinates for your Cruiser: ");
                     cruiserCoords = Console.ReadLine();
-                    cruiserYCoordinate = valid.Validation(cruiserCoords);
-                    cruiserXCoordinate = int.Parse(cruiserCoords.Substring(1));
+                    cruiserXCoordinate = valid.Validation(cruiserCoords);
+                    cruiserYCoordinate = int.Parse(cruiserCoords.Substring(1));
                     if (cruiserYCoordinate != -1 && cruiserXCoordinate < 11)
                         isValid3Input = true;
                 }
@@ -197,8 +197,8 @@ namespace BattleShip.BLL.GameLogic
                 {
                     Console.WriteLine("Player 1 enter your coordinates for your Battleship: ");
                     battleshipCoords = Console.ReadLine();
-                    battleshipYCoordinate = valid.Validation(battleshipCoords);
-                    battleshipXCoordinate = int.Parse(battleshipCoords.Substring(1));
+                    battleshipXCoordinate = valid.Validation(battleshipCoords);
+                    battleshipYCoordinate = int.Parse(battleshipCoords.Substring(1));
                     if (battleshipYCoordinate != -1 && battleshipXCoordinate < 11)
                         isValid4Input = true;
                 }
@@ -250,8 +250,8 @@ namespace BattleShip.BLL.GameLogic
                 {
                     Console.WriteLine("Player 1 enter your coordinates for your Carrier: ");
                     carrierCoords = Console.ReadLine();
-                    carrierYCoordinate = valid.Validation(carrierCoords);
-                    carrierXCoordinate = int.Parse(carrierCoords.Substring(1));
+                    carrierXCoordinate = valid.Validation(carrierCoords);
+                    carrierYCoordinate = int.Parse(carrierCoords.Substring(1));
                     if (carrierYCoordinate != -1 && carrierXCoordinate < 11)
                         isValid5Input = true;
                 }
@@ -297,7 +297,7 @@ namespace BattleShip.BLL.GameLogic
         {
             Console.Clear();
             Console.WriteLine("Player 2 enter your name: ");
-            player1Name = Console.ReadLine();
+            player2Name = Console.ReadLine();
 
             //begin destroyer placement
             string destroyerCoords;
@@ -310,8 +310,8 @@ namespace BattleShip.BLL.GameLogic
                 {
                     Console.WriteLine("Player 2 enter your coordinates for your Destroyer: ");
                     destroyerCoords = Console.ReadLine();
-                    destroyerYCoordinate = valid.Validation(destroyerCoords);
-                    destroyerXCoordinate = int.Parse(destroyerCoords.Substring(1));
+                    destroyerXCoordinate = valid.Validation(destroyerCoords);
+                    destroyerYCoordinate = int.Parse(destroyerCoords.Substring(1));
                     if (destroyerYCoordinate != -1 && destroyerXCoordinate < 11)
                         isValidInput = true;
                 }
@@ -363,8 +363,8 @@ namespace BattleShip.BLL.GameLogic
                 {
                     Console.WriteLine("Player 2 enter your coordinates for your Submarine: ");
                     submarineCoords = Console.ReadLine();
-                    submarineYCoordinate = valid.Validation(submarineCoords);
-                    submarineXCoordinate = int.Parse(submarineCoords.Substring(1));
+                    submarineXCoordinate = valid.Validation(submarineCoords);
+                    submarineYCoordinate = int.Parse(submarineCoords.Substring(1));
 
                     if (submarineYCoordinate != -1 && submarineXCoordinate < 11)
                         isValid2Input = true;
@@ -417,8 +417,8 @@ namespace BattleShip.BLL.GameLogic
                 {
                     Console.WriteLine("Player 2 enter your coordinates for your Cruiser: ");
                     cruiserCoords = Console.ReadLine();
-                    cruiserYCoordinate = valid.Validation(cruiserCoords);
-                    cruiserXCoordinate = int.Parse(cruiserCoords.Substring(1));
+                    cruiserXCoordinate = valid.Validation(cruiserCoords);
+                    cruiserYCoordinate = int.Parse(cruiserCoords.Substring(1));
                     if (cruiserYCoordinate != -1 && cruiserXCoordinate < 11)
                         isValid3Input = true;
                 }
@@ -470,8 +470,8 @@ namespace BattleShip.BLL.GameLogic
                 {
                     Console.WriteLine("Player 2 enter your coordinates for your Battleship: ");
                     battleshipCoords = Console.ReadLine();
-                    battleshipYCoordinate = valid.Validation(battleshipCoords);
-                    battleshipXCoordinate = int.Parse(battleshipCoords.Substring(1));
+                    battleshipXCoordinate = valid.Validation(battleshipCoords);
+                    battleshipYCoordinate = int.Parse(battleshipCoords.Substring(1));
                     if (battleshipYCoordinate != -1 && battleshipXCoordinate < 11)
                         isValid4Input = true;
                 }
@@ -523,8 +523,8 @@ namespace BattleShip.BLL.GameLogic
                 {
                     Console.WriteLine("Player 2 enter your coordinates for your Carrier: ");
                     carrierCoords = Console.ReadLine();
-                    carrierYCoordinate = valid.Validation(carrierCoords);
-                    carrierXCoordinate = int.Parse(carrierCoords.Substring(1));
+                    carrierXCoordinate = valid.Validation(carrierCoords);
+                    carrierYCoordinate = int.Parse(carrierCoords.Substring(1));
                     if (carrierYCoordinate != -1 && carrierXCoordinate < 11)
                         isValid5Input = true;
                 }
@@ -539,6 +539,7 @@ namespace BattleShip.BLL.GameLogic
 
                 }
                 while (carrierDirection == -1);
+
 
 
                 PlaceShipRequest placeShip = new PlaceShipRequest();
@@ -566,12 +567,124 @@ namespace BattleShip.BLL.GameLogic
             //end Carrier placement
         }
 
+        public void DrawBoard(Board b)
+        {
+            string[] letters = new string[]
+            {
+                "|A|", "|B|", "|C|", "|D|", "|E|", "|F|", "|G|", "|H|", "|I|", "|J|"
+            };
+            Console.WriteLine("   |1||2||3||4||5||6||7||8||9||10|");
+            CoordinateConverter letterPlacer = new CoordinateConverter();
+            for (int i = 1; i <= 10; i++)
+            {
+                Console.WriteLine();
+                Console.Write(letters[i - 1]);
+                
+                //string boardRow = "";
+                for (int j = 1; j <= 10; j++)
+                {
+                    
+                    var coord = new Coordinate(i, j);
 
+                    if (b.ShotHistory.ContainsKey(coord))
+                    {
+                        var hitOrMiss = b.ShotHistory[coord];
+                        if (hitOrMiss == ShotHistory.Hit)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(" " + "H" + " ");
+                            Console.ResetColor();
+                        }
+                        else if (hitOrMiss == ShotHistory.Miss)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(" " + "M" + " ");
+                            Console.ResetColor();
+                        }
 
+                    }
+                    else
+                    {
+                        Console.Write(" " + "X" + " ");
+                    }
 
+                    
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+        }
 
+        public void PlayerTurns()
+        {
+            //do while loop over everything
+            bool player1Victory = false;
+            bool player2Victory = false;
+            //start Player 1 turn
+            do
+            {
+                DrawBoard(b2);
+                string coordXInput;
+                int coordX;
+                int coordY;
+                CoordinateConverter valid = new CoordinateConverter();
 
+                Console.WriteLine("Player 1 enter X coordinate to fire at: ");
+                coordXInput = Console.ReadLine();
+                coordX = valid.Validation(coordXInput);
+                Console.WriteLine("Player 1 enter Y coordinate to fire at: ");
+                coordY = int.Parse(Console.ReadLine());
+                var shotP1FiredCoordinates = new Coordinate(coordX, coordY);
+                var responseShot = b2.FireShot(shotP1FiredCoordinates);
 
+                Console.WriteLine("Your shot was a " + responseShot.ShotStatus);
+                if (responseShot.ShotStatus == ShotStatus.Victory)
+                {
+                    player1Victory = true;
+                }
+                Console.WriteLine("Press any key to end your turn");
+                Console.ReadLine();
+                //end Player 1 turn
+
+                //Start Player 2 turn
+                DrawBoard(b1);
+                string coordXInput2;
+                int coordX2;
+                int coordY2;
+                CoordinateConverter valid2 = new CoordinateConverter();
+
+                Console.WriteLine("Player 2 enter X coordinate to fire at: ");
+                coordXInput2 = Console.ReadLine();
+                coordX2 = valid.Validation(coordXInput2);
+                Console.WriteLine("Player 2 enter Y coordinate to fire at: ");
+                coordY2 = int.Parse(Console.ReadLine());
+                var shotP2FiredCoordinates = new Coordinate(coordX2, coordY2);
+                var responseShot2 = b1.FireShot(shotP2FiredCoordinates);
+
+                Console.WriteLine("Your shot was a " + responseShot2.ShotStatus);
+                if (responseShot2.ShotStatus == ShotStatus.Victory)
+                {
+                    player2Victory = true;
+                }
+                Console.WriteLine("Press any key to end your turn");
+                Console.ReadLine();
+                //end Player 2 turn
+            }
+            while (player1Victory == false && player2Victory == false);
+            if (player1Victory == true)
+            {
+                Console.WriteLine("{0} wins!", player1Name);
+                Console.WriteLine("Press any key to Exit");
+                Console.ReadLine();
+            }
+            else if (player2Victory == true)
+            {
+                Console.WriteLine("{0} wins!", player2Name);
+                Console.WriteLine("Press any key to Exit");
+                Console.ReadLine();
+            }
+       }
+        
 
 
 

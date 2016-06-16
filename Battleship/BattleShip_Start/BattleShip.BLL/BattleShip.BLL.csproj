@@ -43,6 +43,7 @@
     <Compile Include="GameLogic\Board.cs" />
     <Compile Include="GameLogic\CoordinateConverter.cs" />
     <Compile Include="GameLogic\DirectionConverter.cs" />
+    <Compile Include="GameLogic\DirectionPlacementValidation.cs" />
     <Compile Include="GameLogic\GameManager.cs" />
     <Compile Include="GameLogic\ShipCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

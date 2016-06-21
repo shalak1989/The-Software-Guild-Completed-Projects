@@ -11,7 +11,9 @@ namespace BattleShip.BLL.GameLogic
         string convertString = "";
         public int Validation(string userCoordInput)
         {
-            if (userCoordInput.Substring(0, 1).ToLower() == "a")
+            var input = userCoordInput.Substring(0, 1).ToLower();
+
+            if (input == "a")
             {
                 return 1;
             }

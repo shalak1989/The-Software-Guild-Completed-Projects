@@ -39,7 +39,7 @@ namespace BattleShip.BLL.GameLogic
                     Console.WriteLine("Player 1 enter your coordinates for your Destroyer: ");
                     destroyerCoords = Console.ReadLine();
                     destroyerXCoordinate = valid.Validation(destroyerCoords);
-                    destroyerYCoordinate = int.Parse(destroyerCoords.Substring(1));
+                    destroyerYCoordinate = int.Parse(destroyerCoords.Substring(1));//try parse
                     if (destroyerYCoordinate != -1 && destroyerXCoordinate < 11)
                         isValidInput = true;
                 }
@@ -77,7 +77,7 @@ namespace BattleShip.BLL.GameLogic
                     Console.ReadLine();
                 }
             }
-            while (response == ShipPlacement.NotEnoughSpace || response == ShipPlacement.Overlap);
+            while (response == ShipPlacement.NotEnoughSpace || response == ShipPlacement.Overlap);// just use if !ok
             //end Destroyer placement
 
             //begin Submarine placement
@@ -592,7 +592,7 @@ namespace BattleShip.BLL.GameLogic
                         if (hitOrMiss == ShotHistory.Hit)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.Write(" " + "H" + " ");
+                            Console.Write(" " + "H" + " ");//write better!
                             Console.ResetColor();
                         }
                         else if (hitOrMiss == ShotHistory.Miss)

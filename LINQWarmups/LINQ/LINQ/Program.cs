@@ -16,8 +16,7 @@ namespace LINQ
          */
         static void Main()
         {
-            //PrintOutOfStock();
-            HighestPricedProductInEachCategory();
+            GroupCustomerOrderYearMonth();
 
 
             Console.ReadLine();
@@ -344,9 +343,25 @@ namespace LINQ
         {
             var customers = DataLoader.LoadCustomers();
 
-            var results = customers.SelectMany(c => c.Orders);
+            var results = customers.Select(p => new { customer = p, OrdersByYear = p.Orders.GroupBy(x => x.OrderDate.Year)});
 
-        }
+            foreach (var p in results)
+            {
+                Console.WriteLine("Customer Name: " + p.customer.CompanyName);
+                foreach (var ordersGroupedByYear in p.OrdersByYear)
+                {
+                    Console.WriteLine("\t Year: {0}", ordersGroupedByYear.Key);
+                    foreach (var ordersGroupedByMonth in ordersGroupedByYear.GroupBy(x => x.OrderDate.Month))//Not a date for the group, there is a date on the individual members of the group...
+                    {
+                        Console.WriteLine("\t\t Month: {0}", ordersGroupedByMonth.Key);
+                        foreach (var order in ordersGroupedByMonth.OrderBy(ord => ord.OrderDate.Month))
+                        
+                            Console.WriteLine("\t\t\t OrderID: {0}", order.OrderID);                 
+                        }
+                    }
+                     
+                }
+            }              
         
         static void UniqueProductCategoryNames()//25. Create a list of unique product category names.
         {
@@ -360,45 +375,84 @@ namespace LINQ
             }
         }
         
-        static void UniqueValueAB()// NOT DONE - 26. Get a list of unique values from NumbersA and NumbersB.
+        static void UniqueValueAB()//26. Get a list of unique values from NumbersA and NumbersB.
         {
             var numbersA = DataLoader.NumbersA;
             var numbersB = DataLoader.NumbersB;
 
-            /*var results = from a in numbersA
-                            join b in numbersB.Distinct()
-                            select results;*/
+            var result = numbersA.ToList();
+            var result2 = numbersB.ToList();
+
+            result.AddRange(numbersB);
+            var finalResult = result.Distinct();
+
+            foreach (var r in finalResult)
+            {
+                Console.WriteLine(r.ToString());
+            }
 
         }
         
-        static void SharedBAndA()// NOT DONE - 27. Get a list of the shared values from NumbersA and NumbersB.
+        static void SharedBAndA()//27. Get a list of the shared values from NumbersA and NumbersB.
         {
             var numbersA = DataLoader.NumbersA;
 
             var numbersB = DataLoader.NumbersB;
 
+            var result = from a in numbersA
+                         from b in numbersB
+                         where a == b
+                         select a;
+
+            var result2 = numbersA.Where(a => numbersB.Contains(a));
+
+           // var resultMethod
+
+            foreach (var a in result)
+            {
+                Console.WriteLine(a.ToString());
+            }
+
         }
 
-        static void NumbersANotInNumbersB()// NOT DONE - 28. Get a list of values in NumbersA that are not also in NumbersB.
+        static void NumbersANotInNumbersB()//28. Get a list of values in NumbersA that are not also in NumbersB.
         {
+            var numbersA = DataLoader.NumbersA;
 
+            var numbersB = DataLoader.NumbersB;
+
+            var result2 = numbersA.Where(a => !numbersB.Contains(a));
+
+            foreach (var a in result2)
+            {
+                Console.WriteLine(a.ToString());
+            }
         }
                   
-        static void FirstProductId12()// NOT DONE - 29. Select only the first product with ProductID = 12 (not a list).
+        static void FirstProductId12()//29. Select only the first product with ProductID = 12 (not a list).
         {
+            var products = DataLoader.LoadProducts();
 
+            var result = from a in products
+                         where a.ProductID == 12
+                         select a.ProductName;
+
+            var result2 = products.First(a => a.ProductID == 12);
+
+            
+            Console.WriteLine(result2.ProductName);
+            
+                         
         }
         
-        static void ProductId789()// NOT DONE - 30. Write code to check if ProductID 789 exists.
+        static void ProductId789()//30. Write code to check if ProductID 789 exists.
         {
-            /*var products = DataLoader.LoadProducts();
+            var products = DataLoader.LoadProducts();
 
-            var results = products.Where(p => p.ProductID).Contains(789);
-
-            foreach (var p in results)
-            {
-                Console.WriteLine(p.ProductID);
-            }*/
+            var results = products.Exists(p => p.ProductID == 789);
+            
+            Console.WriteLine(results);
+            
         }
         
         static void CategoryOutOfStock()//31. Get a list of categories that have at least one product out of stock.
@@ -413,21 +467,36 @@ namespace LINQ
             }*/
         }
         
-        static void NumberBLessThan9()// NOT DONE - 32. Determine if NumbersB contains only numbers less than 9.
+        static void NumberBLessThan9()//32. Determine if NumbersB contains only numbers less than 9.
         {
             var numbersB = DataLoader.NumbersB;
 
-            var result = numbersB.Where(b => b < 9);
-
-            foreach (var b in result)
+            if (numbersB.Any(b => b >= 9))
             {
-                Console.WriteLine(numbersB.ToString());
+                Console.WriteLine("False");
+            }
+            else
+            {
+                Console.WriteLine("True");
             }
         }
         
-        static void GroupedListCategoryInStock()// NOT DONE - 33. Get a grouped a list of products only for categories that have all of their products in stock.
+        static void GroupedListCategoryInStock()//33. Get a grouped a list of products only for categories that have all of their products in stock.
         {
+            var products = DataLoader.LoadProducts();
 
+            var results = products.Where(p => p.UnitsInStock > 0).GroupBy(p => p.Category);
+            //As long as first extension method returns an IEnumerable you can chain
+
+            foreach (var p in results)
+            {
+                //could also not do a writeline and return item.Category + item.UnitsInStock below
+                foreach (var item in p)
+                {
+                    Console.WriteLine(item.Category + "\t" + item.ProductName);
+                    
+                }
+            }
         }
         
         static void OddsNumberA()//34. Count the number of odds in NumbersA.
@@ -442,42 +511,81 @@ namespace LINQ
             }
         }
         
-        static void CustomerIdAndOrderCount()// NOT DONE - 35. Display a list of CustomerIDs and only the count of their orders.
+        static void CustomerIdAndOrderCount()//35. Display a list of CustomerIDs and only the count of their orders.
         {
+            var customers = DataLoader.LoadCustomers();
 
+            var result = customers.Select(c => c.CustomerID);
+                //customers.Select(c => new { c.CustomerID, Count= c.Orders.Count() })
+
+
+            foreach (var c in customers)
+            {
+                Console.WriteLine(c.CustomerID);
+                Console.WriteLine(c.Orders.Count());
+            }
         }
 
-        static void CategoryAndProductCount()// NOT DONE - 36. Display a list of categories and the count of their products.
-        {
-
-        }
-
-        static void TotalUnitsInStockEachCategory()// NOT DONE - 37. Display the total units in stock for each category.
-        {
-
-        }
-
-        static void LowestPricedProductInEachCategory()// NOT DONE - 38. Display the lowest priced product in each category.
-        {
-
-        }
-        
-        static void HighestPricedProductInEachCategory()// NOT DONE - 39. Display the highest priced product in each category.
+        static void CategoryAndProductCount()//36. Display a list of categories and the count of their products.
         {
             var products = DataLoader.LoadProducts();
 
-            var results = products.OrderByDescending(p => p.UnitPrice)
-                                    .Select(p => p.ProductName);
+            var results = products.GroupBy(p => p.Category).Select(p => new { pCategory = p.Key, pCount = p.Count() });
 
-            foreach (var p in results) 
+            foreach (var p in results)
             {
-                Console.WriteLine(p.);
+                Console.WriteLine(p);
+            }
+        }
+
+        static void TotalUnitsInStockEachCategory()//37. Display the total units in stock for each category.
+        {
+            var products = DataLoader.LoadProducts();
+
+            var results = products.GroupBy(p => p.Category);
+            
+            foreach (var p in results)
+            {
+                Console.WriteLine(p.Key + p.Sum(b => b.UnitsInStock));
+            }
+        }
+
+        static void LowestPricedProductInEachCategory()//38. Display the lowest priced product in each category.
+        {
+            var products = DataLoader.LoadProducts();
+
+            var results = products.GroupBy(p => p.Category);
+
+            foreach (var p in results)
+            {
+                Console.WriteLine(p.Key + p.Min(c => c.UnitPrice));
             }
         }
         
-        static void AveragePriceProductEachCategory()// NOT DONE - 40. Show the average price of product for each category.
+        static void HighestPricedProductInEachCategory()//39. Display the highest priced product in each category.
         {
+            var products = DataLoader.LoadProducts();
 
+            var results = products.GroupBy(p => p.Category);
+
+            foreach (var p in results)
+            {
+                Console.WriteLine(p.Key + p.Max(c => c.UnitPrice));
+            }
+
+        }
+        
+        static void AveragePriceProductEachCategory() //40. Show the average price of product for each category.
+        {
+            var products = DataLoader.LoadProducts();
+
+            var results = products.GroupBy(p => p.Category);
+
+            foreach (var p in results)
+            {
+                Console.WriteLine(p.Key + p.Average(c => c.UnitPrice));
+            }
+            
         }
         
         

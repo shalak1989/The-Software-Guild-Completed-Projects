@@ -15,12 +15,14 @@ namespace BattleShip.UI
         {
             MenuItem obj = new MenuItem();
             GameManager game = new GameManager();
+            GameSetup gameSetupObj = new GameSetup();
             
             obj.menuStart();
-            game.setUpPlayer1();
-            game.setUpPlayer2();
-            game.PlayerTurns();
-            
+            gameSetupObj.Execute();
+            //game.setUpPlayer1();
+            //game.setUpPlayer2();
+            //game.PlayerTurns();
+
 
         }
     }

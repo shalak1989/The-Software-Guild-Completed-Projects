@@ -18,7 +18,7 @@ namespace BattleShip.UI
             GameSetup gameSetupObj = new GameSetup();
             
             obj.menuStart();
-            gameSetupObj.Execute();
+            gameSetupObj.SetupBoards();
             //game.setUpPlayer1();
             //game.setUpPlayer2();
             //game.PlayerTurns();

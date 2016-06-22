@@ -11,14 +11,9 @@ namespace BattleShip.BLL.GameLogic
 {
     public class GameSetup
     {
-        Board b1 = new Board();
-        Board b2 = new Board();
 
-        public void SetupBoards()
+        public void SetupBoards(Board b)
         {
-
-            Console.WriteLine("Player PlaceHolder enter your name: ");
-            string player1Name = Console.ReadLine();
 
             CoordinateConverter coordvalid = new CoordinateConverter();
             DirectionConverter dirvalid = new DirectionConverter();
@@ -90,7 +85,7 @@ namespace BattleShip.BLL.GameLogic
          
                     placingShip.ShipType = shipname;
 
-                    response = b1.PlaceShip(placingShip);
+                    response = b.PlaceShip(placingShip);
 
                     if (response == ShipPlacement.Ok)
                     {

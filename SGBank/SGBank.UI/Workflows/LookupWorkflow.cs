@@ -11,6 +11,7 @@ namespace SGBank.UI.Workflows
     public class LookupWorkflow
     {
         private Account _currentAccount;
+        private Account _receivingAccount;
 
         public void Execute()
         {
@@ -54,6 +55,7 @@ namespace SGBank.UI.Workflows
                 Console.WriteLine("\n(Q) to quit");
 
                 Console.WriteLine("\n\nEnter Choice: ");
+
                 string input = Console.ReadLine();
 
                 if (input.Substring(0, 1).ToUpper() == "Q")
@@ -70,6 +72,14 @@ namespace SGBank.UI.Workflows
                 case "1":
                     var depositWF = new DepositWorkflow();
                     depositWF.Execute(_currentAccount);
+                    break;
+                case "2":
+                    var withdrawWF = new WithdrawWorkflow();
+                    withdrawWF.Execute(_currentAccount);
+                    break;
+                case "3":
+                    var transferWF = new TransferWorkflow();
+                    transferWF.Execute(_currentAccount);
                     break;
             }    
         }

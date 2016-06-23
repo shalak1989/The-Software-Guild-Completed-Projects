@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 using SGBank.BLL;
 using SGBank.Models;
 
+
 namespace SGBank.UI.Workflows
 {
-    public class DepositWorkflow
+    public class WithdrawWorkflow
     {
         public void Execute(Account account)
         {
-            decimal amount = GetDepositAmount();
+            decimal amount = GetWithdrawlAmount();
 
             var manager = new AccountManager();
 
-            var response = manager.Deposit(account, amount);
+            var response = manager.Withdraw(account, amount);
 
             if (response.Success)
             {
                 Console.Clear();
-                Console.WriteLine("Deposited {0:c} to account {1}.  New Balance is {2}.", response.Data.DepositAmount, response.Data.AccountNumber, response.Data.NewBalance);
+                Console.WriteLine("Withdrew {0:c} to account {1}.  New Balance is {2}.", response.Data.DepositAmount, response.Data.AccountNumber, response.Data.NewBalance);
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }
@@ -34,11 +35,11 @@ namespace SGBank.UI.Workflows
             }
         }
 
-        private decimal GetDepositAmount()
+        private decimal GetWithdrawlAmount()
         {
             do
             {
-                Console.Write("Enter a deposit amount: ");
+                Console.Write("Enter a withdrawl amount: ");
                 var input = Console.ReadLine();
                 decimal amount;
 
@@ -51,3 +52,4 @@ namespace SGBank.UI.Workflows
         }
     }
 }
+

@@ -73,7 +73,84 @@ namespace SGBank.BLL
             }
 
             return response;
-        } //transfering 
-        //withdrawing
+        }
+
+        public Response<WithdrawReceipt> Withdraw(Account account, decimal amount)//do a delete and a transfer in a very similar way
+        {
+
+            var response = new Response<WithdrawReceipt>();
+
+            try
+            {
+                if (amount <= 0)
+                {
+                    response.Success = false;
+                    response.Message = "Must withdraw a positive value.";
+                }
+                else
+                {
+                    account.Balance = account.Balance - amount;
+                    var repo = new AccountRepository();
+                    repo.UpdateAccount(account);
+                    response.Success = true;
+
+                    response.Data = new WithdrawReceipt();
+                    response.Data.AccountNumber = account.AccountNumber;
+                    response.Data.DepositAmount = amount;
+                    response.Data.NewBalance = account.Balance;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+        public Response<TransferReceipt>Transfer(Account account, decimal amount, Account receivingAccount)//do a delete and a transfer in a very similar way
+        {
+
+            var response = new Response<TransferReceipt>();
+            response.Data = new TransferReceipt();
+            try
+            {
+                if (amount <= 0)
+                {
+                    response.Success = false;
+                    response.Message = "Must transfer a positive value.";
+                }
+                else
+                {
+                    account.Balance = account.Balance - amount; //Withdrawl
+                    var repo = new AccountRepository();
+                    repo.UpdateAccount(account);
+                    response.Success = true;//end withdrawl
+
+                    receivingAccount.Balance = receivingAccount.Balance + amount;//begin deposit into receiving account
+                    repo.UpdateAccount(receivingAccount);
+                    response.Success = true;//end deposit into receiving account
+
+                    response.Data = new TransferReceipt();
+
+                    response.Data.AccountNumber = account.AccountNumber;
+                    response.Data.DepositAmount = amount;
+                    response.Data.NewBalance = account.Balance;
+
+                    response.Data.ReceivingAccountNumber = receivingAccount.AccountNumber;
+                    response.Data.RecievingAccountDepositAmount = amount;
+                    response.Data.ReceivingAccountNewBalance = receivingAccount.Balance;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
     }
 }

@@ -67,5 +67,24 @@ namespace SGBank.Data
                 }
             }
         }
+
+        public void CreateAccount(Account accountToCreate)
+        {
+            var accounts = GetAllAccounts();
+            accounts.Add(accountToCreate);
+            OverwriteFile(accounts);
+            
+        }
+
+        public void DeleteAccount(Account accountToDelete)
+        {
+            var accounts = GetAllAccounts();
+
+            var deletedAccount = accounts.First(p => p.AccountNumber == accountToDelete.AccountNumber);
+
+            accounts.Remove(deletedAccount);
+
+            OverwriteFile(accounts);
+        }
     }
 }

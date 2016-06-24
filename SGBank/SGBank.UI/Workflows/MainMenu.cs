@@ -37,7 +37,12 @@ namespace SGBank.UI.Workflows
             switch (choice)
             {
                 case "1":
-                    // do the Create Account Workflow...
+                    var createAccount = new CreateAccountWorkflow();
+                    createAccount.Execute();
+                    break;
+                case "2":
+                    var deleteAccount = new DeleteAccountWorkflow();
+                    deleteAccount.Execute();
                     break;
                 case "3":
                     var lookup = new LookupWorkflow();

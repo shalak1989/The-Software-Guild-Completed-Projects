@@ -41,6 +41,11 @@ namespace SGBank.BLL
             return response;
         }
 
+        public object Create(int v, decimal amount)
+        {
+            throw new NotImplementedException();
+        }
+
         public Response<DepositReciept> Deposit(Account account, decimal amount)//do a delete and a transfer in a very similar way
         {
             
@@ -152,5 +157,92 @@ namespace SGBank.BLL
 
             return response;
         }
+        public Response<CreateAccountReceipt>Create(Account account, decimal amount)
+        {
+            var response = new Response<CreateAccountReceipt>();
+            response.Data = new CreateAccountReceipt();
+            var repo = new AccountRepository();
+
+            var accountList = repo.GetAllAccounts();
+            var accCount = accountList.Max(p => p.AccountNumber);
+            account.AccountNumber = accCount + 1;
+
+            repo.CreateAccount(account);
+
+            try
+            {
+                if (amount <= 0)
+                {
+                    response.Success = false;
+                    response.Message = "Must open the account with a positive value.";
+                }
+                else
+                {
+                    
+                    account.Balance = amount; //Opening account balance
+                    
+                    response.Success = true;
+
+                    response.Data.FirstName = account.FirstName;
+                    response.Data.LastName = account.LastName;
+                    response.Data.AccountNumber = account.AccountNumber;
+                    response.Data.Balance = amount;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+        public Response<DeleteAccountReceipt> Delete(Account account)
+        {
+            var response = new Response<DeleteAccountReceipt>();
+            response.Data = new DeleteAccountReceipt();
+            var repo = new AccountRepository();
+
+            var accountList = repo.GetAllAccounts();
+  
+            repo.DeleteAccount(account);
+
+            try
+            {
+                if (!accountList.Any(p => p.AccountNumber == account.AccountNumber))
+                {
+                    response.Success = false;
+                    response.Message = "That account does not exist!";
+                }
+                else
+                {                   
+
+                    response.Success = true;
+
+                    response.Data.AccountNumber = account.AccountNumber;                   
+
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+
+
+
+
+
+
+
+
     }
 }
+
+            

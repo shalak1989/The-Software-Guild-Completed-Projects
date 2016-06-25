@@ -8,7 +8,7 @@ using System.IO;
 
 namespace SGBank.Data
 {
-    public class AccountRepository
+    public class AccountRepository : IAccountRepository
     {
         private const string FilePath = @"DataFiles\Bank.txt";
 

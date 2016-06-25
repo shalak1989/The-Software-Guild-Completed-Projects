@@ -7,18 +7,33 @@ using System.Threading.Tasks;
 using SGBank.Data;
 using SGBank.Models;
 
+
 namespace SGBank.BLL
 {
     public class AccountManager
     {
+        IAccountRepository _repo;
+
+        public AccountManager() : this(new AccountRepository())
+        {
+
+        }
+
+        public AccountManager(IAccountRepository repo)
+        {
+            _repo = repo;
+        }
+
+
+
         public Response<Account> GetAccount(int accountNumber)
         {
-            var repo = new AccountRepository();
+           
             var response = new Response<Account>();
 
             try
             {
-                var account = repo.LoadAccount(accountNumber);
+                var account = _repo.LoadAccount(accountNumber);
 
                 if (account == null)
                 {
@@ -41,11 +56,6 @@ namespace SGBank.BLL
             return response;
         }
 
-        public object Create(int v, decimal amount)
-        {
-            throw new NotImplementedException();
-        }
-
         public Response<DepositReciept> Deposit(Account account, decimal amount)//do a delete and a transfer in a very similar way
         {
             
@@ -61,8 +71,8 @@ namespace SGBank.BLL
                 else
                 {
                     account.Balance += amount;
-                    var repo = new AccountRepository();
-                    repo.UpdateAccount(account);
+                    
+                    _repo.UpdateAccount(account);
                     response.Success = true;
 
                     response.Data = new DepositReciept();
@@ -95,8 +105,8 @@ namespace SGBank.BLL
                 else
                 {
                     account.Balance = account.Balance - amount;
-                    var repo = new AccountRepository();
-                    repo.UpdateAccount(account);
+                    
+                    _repo.UpdateAccount(account);
                     response.Success = true;
 
                     response.Data = new WithdrawReceipt();
@@ -129,12 +139,12 @@ namespace SGBank.BLL
                 else
                 {
                     account.Balance = account.Balance - amount; //Withdrawl
-                    var repo = new AccountRepository();
-                    repo.UpdateAccount(account);
+                    
+                    _repo.UpdateAccount(account);
                     response.Success = true;//end withdrawl
 
                     receivingAccount.Balance = receivingAccount.Balance + amount;//begin deposit into receiving account
-                    repo.UpdateAccount(receivingAccount);
+                    _repo.UpdateAccount(receivingAccount);
                     response.Success = true;//end deposit into receiving account
 
                     response.Data = new TransferReceipt();
@@ -161,13 +171,13 @@ namespace SGBank.BLL
         {
             var response = new Response<CreateAccountReceipt>();
             response.Data = new CreateAccountReceipt();
-            var repo = new AccountRepository();
+            //var repo = new AccountRepository();
 
-            var accountList = repo.GetAllAccounts();
+            var accountList = _repo.GetAllAccounts();
             var accCount = accountList.Max(p => p.AccountNumber);
             account.AccountNumber = accCount + 1;
 
-            repo.CreateAccount(account);
+            _repo.CreateAccount(account);
 
             try
             {
@@ -203,11 +213,10 @@ namespace SGBank.BLL
         {
             var response = new Response<DeleteAccountReceipt>();
             response.Data = new DeleteAccountReceipt();
-            var repo = new AccountRepository();
 
-            var accountList = repo.GetAllAccounts();
+            var accountList = _repo.GetAllAccounts();
   
-            repo.DeleteAccount(account);
+            _repo.DeleteAccount(account);
 
             try
             {

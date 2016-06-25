@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using SGBank.BLL;
+using SGBank.Data;
+using SGBank.Models;
+using Moq;
 
 namespace SGBank.Tests
 {
@@ -32,5 +35,73 @@ namespace SGBank.Tests
 
             Assert.IsFalse(response.Success);
         }
+
+        [Test]
+        public void CreateAccountAddsNewAccount()
+        {
+            var repo = new FakeRepository();
+            var mgr = new AccountManager(repo);
+
+            Account account = new Account();
+            var response = mgr.Create(account, 50);
+
+            Assert.AreEqual(account.AccountNumber, 6);//its literally saying is account.AccountNumber equal to six
+        }
+
+        [Test]
+        public void DeleteAccountDeletesAccount()
+        {
+            var repo = new FakeRepository();
+            var mgr = new AccountManager(repo);
+
+            Account account = new Account();            
+            var addToList = mgr.Create(account, 50);
+
+            var response = mgr.Delete(account);
+
+            var accountslist = repo.GetAllAccounts();
+
+            Assert.True(accountslist.Count != 6); //account list will have a count of 6 if the delete failed
+        }
+
+        [Test]
+        public void GetAllAccounts()
+        {
+            var repo = new FakeRepository();
+            var mgr = new AccountManager(repo);
+
+            var accountlist = repo.GetAllAccounts();
+
+            Assert.True(accountlist.Count == 5);
+        }
+
+        [Test]
+        public void LoadSpecificAccount()
+        {
+            var repo = new FakeRepository();
+            var mgr = new AccountManager(repo);
+
+            var accountlist = repo.GetAllAccounts();
+
+            var response = repo.LoadAccount(1);
+
+            Assert.AreEqual(response.FirstName, "Was");
+        }
+
+        [Test]
+        public void UpdateAccountWorks()
+        {
+            var repo = new FakeRepository();
+            var mgr = new AccountManager(repo);
+
+            Account account = new Account();
+            var createAccount = mgr.Create(account, 50);
+
+            var accountlist = repo.GetAllAccounts();
+
+           // repo.UpdateAccount();
+
+        }
+        
     }
 }

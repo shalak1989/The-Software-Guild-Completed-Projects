@@ -53,15 +53,13 @@ namespace SGBank.Tests
         {
             var repo = new FakeRepository();
             var mgr = new AccountManager(repo);
-
-            Account account = new Account();            
-            var addToList = mgr.Create(account, 50);
-
-            var response = mgr.Delete(account);
+          
+           // var addToList = mgr.Create(account, 50);
 
             var accountslist = repo.GetAllAccounts();
+            var response = mgr.Delete(accountslist.ElementAt(1));
 
-            Assert.True(accountslist.Count != 6); //account list will have a count of 6 if the delete failed
+            Assert.True(accountslist.Count == 4); //account list will have a count of 6 if the delete failed
         }
 
         [Test]
@@ -95,11 +93,14 @@ namespace SGBank.Tests
             var mgr = new AccountManager(repo);
 
             Account account = new Account();
-            var createAccount = mgr.Create(account, 50);
+            var getAccount = mgr.GetAccount(1);
 
-            var accountlist = repo.GetAllAccounts();
+            getAccount.Data.Balance = 1200;
 
-           // repo.UpdateAccount();
+          /*  repo.UpdateAccount();
+
+            var response = repo.UpdateAccount(account);*/
+
 
         }
         

@@ -134,7 +134,7 @@ namespace SGBank.BLL
                 if (amount <= 0)
                 {
                     response.Success = false;
-                    response.Message = "Must transfer a positive value.";
+                    response.Message = "Must transfer a positive value.";//add validaiton for deposit to return money if it fails
                 }
                 else
                 {
@@ -177,7 +177,10 @@ namespace SGBank.BLL
             var accCount = accountList.Max(p => p.AccountNumber);
             account.AccountNumber = accCount + 1;
 
+            account.Balance = amount; //Opening account balance
+
             _repo.CreateAccount(account);
+
 
             try
             {
@@ -189,7 +192,7 @@ namespace SGBank.BLL
                 else
                 {
                     
-                    account.Balance = amount; //Opening account balance
+                    
                     
                     response.Success = true;
 
@@ -215,8 +218,6 @@ namespace SGBank.BLL
             response.Data = new DeleteAccountReceipt();
 
             var accountList = _repo.GetAllAccounts();
-  
-            _repo.DeleteAccount(account);
 
             try
             {
@@ -229,6 +230,8 @@ namespace SGBank.BLL
                 {                   
 
                     response.Success = true;
+
+                    _repo.DeleteAccount(account);
 
                     response.Data.AccountNumber = account.AccountNumber;                   
 

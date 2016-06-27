@@ -16,7 +16,7 @@ namespace LINQ
          */
         static void Main()
         {
-            GroupCustomerOrderYearMonth();
+            CategoryAndProductCount();
 
 
             Console.ReadLine();
@@ -339,7 +339,7 @@ namespace LINQ
             }
         }
         
-        static void GroupCustomerOrderYearMonth()// NOT DONE - 24. Group customer orders by year, then by month.
+        static void GroupCustomerOrderYearMonth()//24. Group customer orders by year, then by month.
         {
             var customers = DataLoader.LoadCustomers();
 
@@ -457,14 +457,14 @@ namespace LINQ
         
         static void CategoryOutOfStock()//31. Get a list of categories that have at least one product out of stock.
         {
-            /*var products = DataLoader.LoadProducts();
+            var products = DataLoader.LoadProducts();
 
-            var results = products.Select(p => p.UnitsInStock).Where(p => UnitsInStockDescending == 0);
+            var results = products.Where(p => p.UnitsInStock == 0);
 
             foreach (var p in results)
             {
-                Console.WriteLine(results.ToString());
-            }*/
+                Console.WriteLine(p.Category);
+            }
         }
         
         static void NumberBLessThan9()//32. Determine if NumbersB contains only numbers less than 9.

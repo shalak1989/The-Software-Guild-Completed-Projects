@@ -26,16 +26,20 @@ namespace SGBank.Data
 
         public Account LoadAccount(int accountNumber)
         {
-            return _listOfAccounts.ElementAt(accountNumber);
+            return _listOfAccounts.First(p => p.AccountNumber == accountNumber);//was an elementAt
         }
 
         public void UpdateAccount(Account accountToUpdate)
         {
             var accounts = GetAllAccounts();
 
-            //var existingAccount = accounts.First(p => p.AccountNumber == accountToUpdate.AccountNumber).AccountNumber = 
+            foreach (var a in accounts.Where(p => p.AccountNumber == accountToUpdate.AccountNumber))
+            {
+                a.FirstName = accountToUpdate.FirstName;
+                a.LastName = accountToUpdate.LastName;
+                a.Balance = accountToUpdate.Balance;
+            }
 
-            
         }
 
         //--------------------------------------------------------- Begin Fake Data

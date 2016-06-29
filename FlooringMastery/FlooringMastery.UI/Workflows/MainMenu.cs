@@ -10,25 +10,36 @@ namespace FlooringMastery.UI.Workflows
     {
         public void Execute()
         {
+            bool isValidInput;
             do
             {
+                isValidInput = false;
                 Console.WriteLine("====================================================================\n");
                 Console.WriteLine("1. Display Orders");
                 Console.WriteLine("2. Add an Order");
                 Console.WriteLine("3. Edit an Order");
                 Console.WriteLine("4. Remove an Order");
-                Console.WriteLine("5. Quit \n");
+                Console.WriteLine("(Q) to quit \n");
                 Console.WriteLine("====================================================================");
-
+                
                 Console.WriteLine("\n\nEnter Choice: ");
                 string input = Console.ReadLine();
 
-                if (input.Substring(0, 1).ToUpper() == "Q")
+                if (input.ToUpper() == "Q")
                     break;
+                if (input != "1" && input != "2" && input  != "3" && input != "4")
 
-                ProcessChoice(input);
+                {
+                    Console.WriteLine("Invalid input!");
+                }
+                else
+                {
+                    ProcessChoice(input);
+                    isValidInput = true;
+                }
+                
 
-            } while (true);
+            } while (isValidInput == false);
 
         }
 
@@ -41,7 +52,7 @@ namespace FlooringMastery.UI.Workflows
                     displayOrders.Execute();
                     break;
                 case "2":
-                    var addOrder = new AddOrderWorkflow();
+                    var addOrder = new CreateOrderWorkflow();
                     addOrder.Execute();
                     break;
                 case "3":

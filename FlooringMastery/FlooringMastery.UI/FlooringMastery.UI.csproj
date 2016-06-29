@@ -46,7 +46,7 @@
     <Compile Include="Workflows\MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Workflows\AddOrderWorkflow.cs" />
+    <Compile Include="Workflows\CreateOrderWorkflow.cs" />
     <Compile Include="Workflows\RemoveOrderWorkflow.cs" />
     <Compile Include="Workflows\DisplayOrdersWorkflow.cs" />
     <Compile Include="Workflows\EditOrderWorkflow.cs" />
@@ -55,6 +55,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FlooringMastery.BLL\FlooringMastery.BLL.csproj">
+      <Project>{a0fd0b8f-25d1-43a2-ad23-72131b0ddee2}</Project>
+      <Name>FlooringMastery.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FlooringMastery.Data\FlooringMastery.Data.csproj">
       <Project>{7f182f30-e0ed-4bbe-a197-e29f37b6e279}</Project>
       <Name>FlooringMastery.Data</Name>

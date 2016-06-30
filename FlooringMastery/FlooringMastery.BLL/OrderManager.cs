@@ -11,6 +11,21 @@ namespace FlooringMastery.BLL
 {
     public class OrderManager
     {
+        IOrderRepository _repo;//guaranteeing that any _repo has all of the methods of the interface
+        
+
+        public OrderManager() :this(new OrderRepository())//add a key to your config for the CONFIG switch
+                                                           //This code is saying IF you don't pass a specific repo it will use what comes after the this: keyword
+        {                                                   // :this keyword points to IOrderRepository because OrderRepository is an IOrderRepository now due to inheritance 
+             //_repo = new OrderRepository();
+        }
+
+        public OrderManager(IOrderRepository repo)
+        {
+            _repo = repo;//put the config switch in Gethere
+        }
+
+
         public Response<CreateOrderReceipt> Create(Order order)
         {
             //Customer name, state, product type, and area have been set
@@ -25,9 +40,10 @@ namespace FlooringMastery.BLL
 
 
             response.Data = new CreateOrderReceipt();
-            var repo = new OrderRepository(DateTime.Now.ToShortDateString().Replace("/", ""));
+            //var _repo = new OrderRepository();
+            
 
-            var orderList = repo.GetAllOrders();
+            var orderList = _repo.GetAllOrders(DateTime.Now.ToShortDateString().Replace("/", ""));
             int ordCount = orderList.Count();
             if (ordCount == 0)
             {
@@ -54,7 +70,7 @@ namespace FlooringMastery.BLL
             //// multiply the summed value above by the taxrate to get the tax
             // Get total by adding summed value + tax
 
-            repo.CreateOrder(order);
+            _repo.CreateOrder(order, DateTime.Now.ToShortDateString().Replace("/", ""));
 
             try
             {
@@ -96,13 +112,14 @@ namespace FlooringMastery.BLL
             var response = new Response<DeleteOrderReceipt>();
             response.Data = new DeleteOrderReceipt();
             //you need to pass in the date from the user
-            var repo = new OrderRepository(t);
+           
+            _repo.GetFilePath(t);
 
-            var orderList = repo.GetAllOrders();
+            var orderList = _repo.GetAllOrders(t);
 
             try
             {
-                repo.DeleteOrder(a);
+                _repo.DeleteOrder(a, t);
                 response.Success = false;
             }
 
@@ -127,9 +144,10 @@ namespace FlooringMastery.BLL
             var productList = products.GetAllProducts();
 
 
-            var repo = new OrderRepository(date);
+            //var _repo = new OrderRepository();
+            _repo.GetFilePath(date);
 
-            var orderList = repo.GetAllOrders();
+            var orderList = _repo.GetAllOrders(date);
 
 
             order.TaxRate = taxList.First(x => x.State == order.State).TaxRate;// this is the same as saying where "this" is first true give me the tax rate
@@ -139,7 +157,7 @@ namespace FlooringMastery.BLL
             order.tax = (order.MaterialCost + order.LaborCost) * (order.TaxRate / 100M);
             order.total = order.MaterialCost + order.LaborCost + order.tax;
 
-            repo.EditOrder(order);
+            _repo.EditOrder(order, date);
 
             try
             {

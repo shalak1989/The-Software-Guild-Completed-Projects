@@ -39,9 +39,9 @@ namespace FlooringMastery.UI.Workflows
                 }
             } while (isValidInput == false);
 
-            OrderRepository orders = new OrderRepository(orderDateToDelete);
+            OrderRepository orders = new OrderRepository();
 
-            var ordersDisplay = orders.GetAllOrders();
+            var ordersDisplay = orders.GetAllOrders(orderDateToDelete);
 
             foreach (var order in ordersDisplay)
             {

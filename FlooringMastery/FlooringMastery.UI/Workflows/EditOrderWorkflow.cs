@@ -18,9 +18,12 @@ namespace FlooringMastery.UI.Workflows
         string orderDateToEdit;
         int ordNum;
         Order currentOrder;
+
         public void Execute()
         {
+            OrderRepository repo = new OrderRepository();
 
+            
             do
             {
                 isValidInput = false;
@@ -43,9 +46,26 @@ namespace FlooringMastery.UI.Workflows
                 }
             } while (isValidInput == false);
 
-            OrderRepository orders = new OrderRepository(orderDateToEdit);
+            OrderRepository orders = new OrderRepository();
 
-            var ordersDisplay = orders.GetAllOrders();
+            var ordersDisplay = orders.GetAllOrders(orderDateToEdit);
+
+            for (int i = 0; i < ordersDisplay.Count; i++)
+            {
+                Console.WriteLine("-------------------------");
+                Console.WriteLine("Order Number: {0}", ordersDisplay.ElementAt(i).OrderNumber);
+                Console.WriteLine("Order Name: {0}", ordersDisplay.ElementAt(i).CustomerName);
+                Console.WriteLine("State: {0}", ordersDisplay.ElementAt(i).State);
+                Console.WriteLine("Tax Rate: {0}%", ordersDisplay.ElementAt(i).TaxRate);
+                Console.WriteLine("Product Type: {0}", ordersDisplay.ElementAt(i).ProductType);
+                Console.WriteLine("Area: {0}", ordersDisplay.ElementAt(i).Area);
+                Console.WriteLine("CostPerSquareFoot: ${0}", ordersDisplay.ElementAt(i).CostPerSquareFoot);
+                Console.WriteLine("Material Cost: ${0}", ordersDisplay.ElementAt(i).MaterialCost);
+                Console.WriteLine("Labor Cost: ${0}", ordersDisplay.ElementAt(i).LaborCost);
+                Console.WriteLine("Tax: ${0}", ordersDisplay.ElementAt(i).tax);
+                Console.WriteLine("Total: ${0}", ordersDisplay.ElementAt(i).total);
+                Console.WriteLine("-------------------------");
+            }
 
             do
             {

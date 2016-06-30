@@ -19,9 +19,9 @@ namespace FlooringMastery.UI.Workflows
             
             ValidOrderDate();
 
-            OrderRepository repo = new OrderRepository(orderDate);
+            OrderRepository repo = new OrderRepository();
 
-            var orderList = repo.GetAllOrders();
+            var orderList = repo.GetAllOrders(orderDate);
 
             for (int i = 0; i < orderList.Count; i++)
             {

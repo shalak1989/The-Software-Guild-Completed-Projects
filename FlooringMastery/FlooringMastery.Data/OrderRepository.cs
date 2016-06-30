@@ -8,23 +8,22 @@ using System.IO;
 
 namespace FlooringMastery.Data
 {
-    public class OrderRepository
+    public class OrderRepository : IOrderRepository
     {
         string datetime = DateTime.Now.ToShortDateString().Replace("/", "");
-        private string _filePath;
 
-        public OrderRepository(string date)
+        public string GetFilePath(string date)
         {
-            _filePath = string.Format(@"Datafiles\Orders_{0}.txt", date);
+            return string.Format(@"Datafiles\Orders_{0}.txt", date);
         }
 
-        public List<Order> GetAllOrders()
+        public List<Order> GetAllOrders(string date)
         {
             List<Order> orders = new List<Order>();
 
-            if(File.Exists(_filePath))
+            if(File.Exists(GetFilePath(date)))
             {
-                var reader = File.ReadAllLines(_filePath);
+                var reader = File.ReadAllLines(GetFilePath(date));
 
                 for (int i = 1; i < reader.Length; i++)
                 {
@@ -55,9 +54,9 @@ namespace FlooringMastery.Data
        
          }
 
-        public void EditOrder(Order orderToUpdate)
+        public void EditOrder(Order orderToUpdate, string date)
         {
-            var orders = GetAllOrders();
+            var orders = GetAllOrders(date);
 
             var existingOrder = orders.First(order => order.OrderNumber == orderToUpdate.OrderNumber);
             existingOrder.CustomerName = orderToUpdate.CustomerName;
@@ -71,14 +70,14 @@ namespace FlooringMastery.Data
             existingOrder.tax = orderToUpdate.tax;
             existingOrder.total = orderToUpdate.total;
 
-            OverwriteOrderFile(orders);
+            OverwriteOrderFile(orders, date);
         }
 
-        private void OverwriteOrderFile(List<Order> orders)//DONE
+        private void OverwriteOrderFile(List<Order> orders, string date)//DONE
         {
-            File.Delete(_filePath);
+            File.Delete(GetFilePath(date));
 
-            using (var writer = File.CreateText(_filePath))
+            using (var writer = File.CreateText(GetFilePath(date)))
             {
                 writer.WriteLine("OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot," +
                     "LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
@@ -92,23 +91,24 @@ namespace FlooringMastery.Data
             }
         }
 
-        public void CreateOrder(Order orderToCreate)//DONE
+        public void CreateOrder(Order orderToCreate, string date)//DONE
         {
-            var orders = GetAllOrders();
+            var orders = GetAllOrders(date);
             orders.Add(orderToCreate);
-            OverwriteOrderFile(orders);
+            OverwriteOrderFile(orders, date);
 
         }
 
-        public void DeleteOrder(int a)//DONE
+        public void DeleteOrder(int a, string date)//DONE
         {
-            var orders = GetAllOrders();
+            var orders = GetAllOrders(date);
 
             var deletedOrder = orders.First(o => o.OrderNumber == a);
 
             orders.Remove(deletedOrder);
 
-            OverwriteOrderFile(orders);
+            OverwriteOrderFile(orders, date);
         }
+
     }
 }

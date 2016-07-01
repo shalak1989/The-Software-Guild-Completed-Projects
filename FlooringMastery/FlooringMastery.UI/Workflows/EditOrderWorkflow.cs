@@ -9,7 +9,7 @@ using FlooringMastery.Data;
 using FlooringMastery.Models;
 
 namespace FlooringMastery.UI.Workflows
-{
+{   
     public class EditOrderWorkflow
     {
         OrderManager mgr = new OrderManager();
@@ -21,9 +21,7 @@ namespace FlooringMastery.UI.Workflows
 
         public void Execute()
         {
-            OrderRepository repo = new OrderRepository();
-
-            
+            OrderManager mgr = new OrderManager();
             do
             {
                 isValidInput = false;
@@ -46,9 +44,7 @@ namespace FlooringMastery.UI.Workflows
                 }
             } while (isValidInput == false);
 
-            OrderRepository orders = new OrderRepository();
-
-            var ordersDisplay = orders.GetAllOrders(orderDateToEdit);
+            var ordersDisplay = mgr.GetOrdersFromRepo(orderDateToEdit);
 
             for (int i = 0; i < ordersDisplay.Count; i++)
             {
@@ -120,10 +116,12 @@ namespace FlooringMastery.UI.Workflows
             }
             ///// START THE EDITING
 
-            
-            OrderManager mgr = new OrderManager();
             ExecuteEdit();
             mgr.EditOrder(currentOrder, orderDateToEdit);
+            Console.WriteLine();
+            Console.WriteLine("Press any key to return to the main menu.");
+            Console.ReadLine();
+            returnToMenu.Execute();
         }
           
         private void ExecuteEdit()

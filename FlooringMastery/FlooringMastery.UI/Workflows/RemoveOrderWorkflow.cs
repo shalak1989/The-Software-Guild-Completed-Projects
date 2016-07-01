@@ -39,9 +39,7 @@ namespace FlooringMastery.UI.Workflows
                 }
             } while (isValidInput == false);
 
-            OrderRepository orders = new OrderRepository();
-
-            var ordersDisplay = orders.GetAllOrders(orderDateToDelete);
+            var ordersDisplay = mgr.GetOrdersFromRepo(orderDateToDelete);
 
             foreach (var order in ordersDisplay)
             {
@@ -97,6 +95,11 @@ namespace FlooringMastery.UI.Workflows
                 returnToMenu.Execute();
             }
             mgr.DeleteOrder(ordNum, orderDateToDelete);
+            Console.WriteLine();
+            Console.WriteLine("Press any key to return to the main menu.");
+            Console.ReadLine();
+
+            returnToMenu.Execute();
         }
     }
 }

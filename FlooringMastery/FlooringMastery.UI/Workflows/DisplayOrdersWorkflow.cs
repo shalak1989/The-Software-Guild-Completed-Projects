@@ -19,9 +19,9 @@ namespace FlooringMastery.UI.Workflows
             
             ValidOrderDate();
 
-            OrderRepository repo = new OrderRepository();
+            OrderManager mgr = new OrderManager();
 
-            var orderList = repo.GetAllOrders(orderDate);
+            var orderList = mgr.GetOrdersFromRepo(orderDate);
 
             for (int i = 0; i < orderList.Count; i++)
             {
@@ -39,8 +39,14 @@ namespace FlooringMastery.UI.Workflows
                 Console.WriteLine("Total: ${0}", orderList.ElementAt(i).total);
                 Console.WriteLine("-------------------------");
             }
+            Console.WriteLine();
+            Console.WriteLine("Press any key to return to the main menu.");
             Console.ReadLine();
-            
+
+            MainMenu returnToMenu = new MainMenu();
+            returnToMenu.Execute();
+
+
         }
 
         private void ValidOrderDate()
@@ -79,22 +85,6 @@ namespace FlooringMastery.UI.Workflows
 
 
 
-
-
-
-
-
-    //do
-    //        {
-    //            edittingDone = "N";
-    //            Console.WriteLine("-------------------------");
-    //            Console.WriteLine("Order Number: " + ordersDisplay.ElementAt);
-    //            Console.WriteLine("Customer Name: " + order.CustomerName);
-    //            Console.WriteLine("Order Total: $" + order.total);
-    //            Console.WriteLine("-------------------------");
-    //        } while (edittingDone.ToUpper() == "N");
-
-   
 
 
 

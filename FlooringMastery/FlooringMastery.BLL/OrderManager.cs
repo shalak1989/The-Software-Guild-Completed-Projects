@@ -5,39 +5,52 @@ using System.Text;
 using System.Threading.Tasks;
 using FlooringMastery.Data;
 using FlooringMastery.Models;
+using System.Configuration;
+
+
 
 
 namespace FlooringMastery.BLL
-{
+{   
     public class OrderManager
     {
+        string _mode = ConfigurationManager.AppSettings["Mode"];
         IOrderRepository _repo;//guaranteeing that any _repo has all of the methods of the interface
-        
 
-        public OrderManager() :this(new OrderRepository())//add a key to your config for the CONFIG switch
-                                                           //This code is saying IF you don't pass a specific repo it will use what comes after the this: keyword
+        public OrderManager() //:this(new OrderRepository())//add a key to your config for the CONFIG switch                                                         //This code is saying IF you don't pass a specific repo it will use what comes after the this: keyword
         {                                                   // :this keyword points to IOrderRepository because OrderRepository is an IOrderRepository now due to inheritance 
-             //_repo = new OrderRepository();
+            //_repo = new OrderRepository();
+            if (_mode.Equals("Test"))
+            {
+                FakeRepository fake = new FakeRepository();
+                _repo = fake;
+            }
+            else
+            {
+                OrderRepository real = new OrderRepository();
+                _repo = real;
+            }
         }
 
         public OrderManager(IOrderRepository repo)
         {
-            _repo = repo;//put the config switch in Gethere
+            _repo = repo;
         }
 
+        public List<Order> GetOrdersFromRepo(string date)
+        {
+           var orders = _repo.GetAllOrders(date);
+            return orders;
+        }
 
         public Response<CreateOrderReceipt> Create(Order order)
         {
-            //Customer name, state, product type, and area have been set
-
             var response = new Response<CreateOrderReceipt>();
             var products = new ProductRepository();
             var taxes = new TaxRepository();
 
             var taxList = taxes.GetAllTaxes();
             var productList = products.GetAllProducts();
-
-
 
             response.Data = new CreateOrderReceipt();
             //var _repo = new OrderRepository();

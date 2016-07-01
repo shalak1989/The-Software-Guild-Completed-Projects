@@ -27,10 +27,10 @@ namespace FlooringMastery.UI.Workflows
                 isValidInput = false;
                 Console.WriteLine("Choose the state for this order (use state abbreviations to choose): ");
                 Console.WriteLine(" 1. Ohio (OH)\n 2. Pennsylvania (PA)\n 3. Michigan(MI)\n 4. Indiana (IN)\n");
-                var orderState = Console.ReadLine();
+                string orderState = Console.ReadLine();
                
 
-                if (orderState.ToUpper() == "OH" || orderState.ToUpper() == "PA" || orderState.ToUpper() == "MI" || newOrder.State.ToUpper() == "IN")
+                if (orderState.ToUpper() == "OH" || orderState.ToUpper() == "PA" || orderState.ToUpper() == "MI" || orderState.ToUpper() == "IN")
                 {
                     newOrder.State = orderState;
                     isValidInput = true;
@@ -98,6 +98,12 @@ namespace FlooringMastery.UI.Workflows
 
             } while (isValidInput == false);
             mgr.Create(newOrder);
+            Console.WriteLine();
+            Console.WriteLine("Press any key to return to the main menu.");
+            Console.ReadLine();
+
+            MainMenu returnToMenu = new MainMenu();
+            returnToMenu.Execute();
         }
     }
 }

@@ -7,9 +7,6 @@ using FlooringMastery.Data;
 using FlooringMastery.Models;
 using System.Configuration;
 
-
-
-
 namespace FlooringMastery.BLL
 {   
     public class OrderManager
@@ -19,7 +16,7 @@ namespace FlooringMastery.BLL
 
         public OrderManager() //:this(new OrderRepository())//add a key to your config for the CONFIG switch                                                         //This code is saying IF you don't pass a specific repo it will use what comes after the this: keyword
         {                                                   // :this keyword points to IOrderRepository because OrderRepository is an IOrderRepository now due to inheritance 
-            //_repo = new OrderRepository();
+            _repo = new OrderRepository();
             if (_mode.Equals("Test"))
             {
                 FakeRepository fake = new FakeRepository();
@@ -83,7 +80,7 @@ namespace FlooringMastery.BLL
             //// multiply the summed value above by the taxrate to get the tax
             // Get total by adding summed value + tax
 
-            _repo.CreateOrder(order, DateTime.Now.ToShortDateString().Replace("/", ""));
+            
 
             try
             {
@@ -95,6 +92,7 @@ namespace FlooringMastery.BLL
                 else
                 {
 
+                    _repo.CreateOrder(order, DateTime.Now.ToShortDateString().Replace("/", ""));
                     response.Success = true;
 
                     response.Data.OrderNumber = order.OrderNumber;
@@ -133,7 +131,7 @@ namespace FlooringMastery.BLL
             try
             {
                 _repo.DeleteOrder(a, t);
-                response.Success = false;
+                response.Success = true;
             }
 
             catch (Exception ex)
@@ -160,7 +158,7 @@ namespace FlooringMastery.BLL
             //var _repo = new OrderRepository();
             _repo.GetFilePath(date);
 
-            var orderList = _repo.GetAllOrders(date);
+            //var orderList = _repo.GetAllOrders(date);
 
 
             order.TaxRate = taxList.First(x => x.State == order.State).TaxRate;// this is the same as saying where "this" is first true give me the tax rate
@@ -170,7 +168,7 @@ namespace FlooringMastery.BLL
             order.tax = (order.MaterialCost + order.LaborCost) * (order.TaxRate / 100M);
             order.total = order.MaterialCost + order.LaborCost + order.tax;
 
-            _repo.EditOrder(order, date);
+            
 
             try
             {
@@ -181,7 +179,7 @@ namespace FlooringMastery.BLL
                 }
                 else
                 {
-
+                    _repo.EditOrder(order, date);
                     response.Success = true;
 
                     response.Data.OrderNumber = order.OrderNumber;

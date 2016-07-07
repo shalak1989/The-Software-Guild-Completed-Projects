@@ -1,0 +1,23 @@
+﻿@model Contacts.Models.Contact
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add Contact</h2>
+
+<h3>@Html.ActionLink("Back to List", "Index", "Home")</h3>
+<h3><a href="/home/index">Back to List</a></h3>
+
+@using (Html.BeginForm("AddContact", "Home", FormMethod.Post))
+{
+    <p>
+        <label>Name</label>
+        @Html.TextBoxFor(x => x.Name)
+    </p>
+    <p>
+        <label>Phone Number</label>
+        @Html.TextBoxFor(x => x.PhoneNumber)
+    </p>
+    <button>Save</button>
+}

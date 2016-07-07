@@ -8,10 +8,11 @@ using FlooringMastery.Data;
 using FlooringMastery.Models;
 
 namespace FlooringMastery.UI.Workflows
-{
+{   
+    
     public class CreateOrderWorkflow
     {
-        ProductRepository products = new ProductRepository();
+        ProductRepository products = new ProductRepository();//put this in the order manager
         OrderManager mgr = new OrderManager();
         bool isValidInput;
         Order newOrder = new Order();
@@ -45,7 +46,7 @@ namespace FlooringMastery.UI.Workflows
 
             do
             {
-                var productlist = products.GetAllProducts();
+                var productlist = products.GetAllProducts();//put a method in the manager to decouple the repo's from the UI
                 isValidInput = false;
 
                 Console.WriteLine("Choose your Product Type ( use the product name): \n");

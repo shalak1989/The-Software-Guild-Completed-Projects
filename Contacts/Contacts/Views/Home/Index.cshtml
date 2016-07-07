@@ -1,0 +1,47 @@
+﻿@model List<Contacts.Models.Contact>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div>
+    <h1>My Contacts </h1>
+
+    <h3>@Html.ActionLink("Add a new contact", "Add", "Home")</h3>
+    @if (Model.Any())
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var contact in Model)
+                {
+                    <tr>
+                        <td>@contact.Name</td>
+                        <td>@contact.PhoneNumber</td>
+                        <td>@Html.ActionLink("Edit", "Edit", "Home", new {id = @contact.ContactId}, null)</td>
+                        @*<td><a href="/home/edit/@contact.ContactId">Edit</a></td>*@
+                        <td>
+                            @using (Html.BeginForm("DeleteContact", "Home", FormMethod.Post))
+                            {
+                                @Html.Hidden("id", contact.ContactId)
+                                <button>Delete</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>You do not have any contacts! Go add one!</p>
+    }
+
+</div>

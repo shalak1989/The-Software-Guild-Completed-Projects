@@ -20,12 +20,6 @@ namespace FlooringMastery.UI
 
             startMenu.Execute();
 
-
-            
-
-            
-
-
         }
     }
 }

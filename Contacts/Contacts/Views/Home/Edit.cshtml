@@ -1,0 +1,32 @@
+﻿@model Contacts.Models.Contact
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div>
+    <h1>Edit Contact</h1>
+
+    <h3>@Html.ActionLink("Back to List", "Index", "Home")</h3>
+    @using (Html.BeginForm("EditContact", "Home", FormMethod.Post))
+    {
+        @Html.HiddenFor(c => c.ContactId)
+        <p>
+            <label>Name</label>
+            @Html.TextBoxFor(c => c.Name)
+        </p>
+        <p>
+            <label>Phone Number</label>
+            @Html.TextBoxFor(c => c.PhoneNumber)
+        </p>
+        <button>Save</button>
+    }
+
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var foo = 2;
+        //alert(foo);
+    </script>
+    }

@@ -92,6 +92,12 @@ namespace Exercises.Models.Repositories
             selectedStudent.GPA = student.GPA;
             selectedStudent.Major = student.Major;
             selectedStudent.Courses = student.Courses;
+            selectedStudent.Address.Street1 = student.Address.Street1;
+            selectedStudent.Address.Street2 = student.Address.Street2;
+            selectedStudent.Address.City = student.Address.City;
+            selectedStudent.Address.State.StateName = student.Address.State.StateName;
+            selectedStudent.Address.State.StateAbbreviation = student.Address.State.StateAbbreviation;
+            selectedStudent.Address.PostalCode = student.Address.PostalCode;
         }
 
         public static void Delete(int studentId)

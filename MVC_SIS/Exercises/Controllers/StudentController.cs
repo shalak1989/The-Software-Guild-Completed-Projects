@@ -91,5 +91,24 @@ namespace Exercises.Controllers
             return View(vm);
         }
 
+        [HttpGet]
+        public ActionResult DeleteStudent(int id)
+        {
+            var student = StudentRepository.Get(id);
+            var studentVM = new StudentVM();
+            studentVM.Student = student;
+            studentVM.SetCourseItems(CourseRepository.GetAll());
+            studentVM.SetMajorItems(MajorRepository.GetAll());
+
+            return View(studentVM);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteStudent(StudentVM vm)
+        {
+            StudentRepository.Delete(vm.Student.StudentId);
+            return RedirectToAction("List");
+        }
+
     }
 }

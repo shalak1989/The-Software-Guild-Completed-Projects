@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Exercises.Models.Data.Student>
 
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Student List";
 }
 
 <div class="row">
@@ -31,7 +31,7 @@
                                 <td>@student.Major.MajorName</td>
                                 <td>@student.GPA</td>
                                 <td>@Html.ActionLink("Edit", "Edit", "Student", new { id = student.StudentId }, null)</td>
-                                <td>@Html.ActionLink("Delete", "Delete", "Student", new { id = student.StudentId }, null)</td> 
+                                <td>@Html.ActionLink("Delete", "DeleteStudent", "Student", new { id = student.StudentId }, null)</td> 
                             </tr>
                         }
                     </tbody>

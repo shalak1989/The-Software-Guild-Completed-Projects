@@ -87,6 +87,11 @@ namespace Exercises.Models.Repositories
         {
             var selectedStudent = _students.First(s => s.StudentId == student.StudentId);
 
+            if (selectedStudent.Address == null)
+            {
+                selectedStudent.Address = new Address();
+            }
+
             selectedStudent.FirstName = student.FirstName;
             selectedStudent.LastName = student.LastName;
             selectedStudent.GPA = student.GPA;

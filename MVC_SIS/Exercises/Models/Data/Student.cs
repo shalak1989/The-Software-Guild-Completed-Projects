@@ -8,6 +8,12 @@ namespace Exercises.Models.Data
 {
     public class Student
     {
+
+        public Student()
+        {
+           Address = new Address();
+        }
+
         public int StudentId { get; set; }
         [Required(ErrorMessage = "First name is required")]
         public string FirstName { get; set; }

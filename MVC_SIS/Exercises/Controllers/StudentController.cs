@@ -58,13 +58,18 @@ namespace Exercises.Controllers
 
         [HttpGet]
         public ActionResult Edit(int id)
-        {
+        {   
+
             var student = StudentRepository.Get(id);
             var studentVM = new StudentVM();
             studentVM.Student = student;
             studentVM.SetCourseItems(CourseRepository.GetAll());
             studentVM.SetMajorItems(MajorRepository.GetAll());
-
+            foreach (var courses in student.Courses)
+            {
+                studentVM.SelectedCourseIds.Add(courses.CourseId);
+            }
+            //set selected course IDS
             return View(studentVM);
         }
 
@@ -73,7 +78,7 @@ namespace Exercises.Controllers
         {
             if (ModelState.IsValid)
             {
-                var name = Request.Form["Student.FirstName"];
+                //var name = Request.Form["Student.FirstName"];
                 vm.Student.Courses = new List<Course>();
 
                 foreach (var id in vm.SelectedCourseIds)

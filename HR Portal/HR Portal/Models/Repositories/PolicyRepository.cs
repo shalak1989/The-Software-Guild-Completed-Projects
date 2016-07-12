@@ -39,5 +39,15 @@ namespace HR_Portal.Models.Repositories
             return _policies;
         }
 
+        public static Policy Get(int policyId)
+        {
+            return _policies.FirstOrDefault(p => p.PolicyId == policyId);
+        }
+
+        public static void Delete(int policyId)
+        {
+            _policies.RemoveAll(c => c.PolicyId == policyId);
+        }
+
     }
 }

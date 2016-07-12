@@ -8,16 +8,15 @@ using System.Web.Mvc;
 
 namespace HR_Portal.Models.ViewModels
 {
-    public class PolicyVM
+    public class AddPolicyVM
     {
         public Policy Policy { get; set; }
         public List<SelectListItem> CategoryItems { get; set; }
-        public List<Policy> PolicyItems { get; set; }
 
-        public PolicyVM()
+
+        public AddPolicyVM()
         {
             CategoryItems = new List<SelectListItem>();
-            PolicyItems = new List<Policy>();
         }
 
         public void SetCategoryItems(IEnumerable<Category> categories)

@@ -1,0 +1,28 @@
+﻿@model HR_Portal.Models.Data.Policy
+
+@{
+    ViewBag.Title = "ViewPolicyItem";
+}
+
+<h2>View Individual Policy</h2>
+@Html.ActionLink("Return to Categories", "ViewPolicies", "Home")
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Policy ID</th>
+            <th>Policy Name</th>
+            <th>Description</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>@Model.PolicyId</td>
+                <td>@Model.Name</td>
+                <td>@Model.PolicyText</td>
+                <td>@Model.Category.CategoryName</td>
+            </tr>
+
+    </tbody>
+</table>

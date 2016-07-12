@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HR_Portal.Models.Data.PolicyVM>
+﻿@model HR_Portal.Models.ViewModels.PolicyVM
 
 @{
     ViewBag.Title = "ViewPolicies";
@@ -10,38 +10,39 @@
     <div class="row">
         <div class="col-xs-12">
             <h4>Policy List</h4>
-            @*<p>@Html.ActionLink("Add a Student", "Add", "Student", null, new { @class = "btn btn-primary" })</p>*@
             
-            <div class="form-group">
-                <label>Policy Category:</label>
-                @Html.DropDownListFor(p => p.First new { @class = "form-control" })
-            </div>
-            
-            
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Policy Category
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    @foreach (var category in Model.CategoryItems)
+    {
+        <li><a href="/Home/ViewPolicies/?category=@category.Value">@category.Text</a></li>
+    }
+  </ul>
+</div>              
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Policy ID</th>
+                        <th>Policy Name</th>
                         <th>Category</th>
-                        <th>Name</th>
-                        <th>Description</th>
                     </tr>
                 </thead>
-
                 <tbody>
-                    @foreach (var policy in Model)
+                    @foreach (var policy in Model.PolicyItems)
                     {
                         <tr>
                             <td>@policy.PolicyId</td>
-                            <td>@policy.Category.CategoryName</td>
                             <td>@policy.Name</td>
-                            <td>@policy.PolicyText</td>
-                            @*<td>@Html.ActionLink("Edit", "Edit", "Student", new { id = student.StudentId }, null)</td>
-                            <td>@Html.ActionLink("Delete", "DeleteStudent", "Student", new { id = student.StudentId }, null)</td>*@
+                            <td>@policy.Category.CategoryName</td>                            
+                            <td>@Html.ActionLink("View", "ViewPolicyItem", "Home", new { policyId = policy.PolicyId }, null)</td>
+                            @*<td><a href="/Home/ViewPolicyItem?policyId=@policy.PolicyId">View</a></td>*@
                         </tr>
                     }
                 </tbody>
             </table>
+    
         </div>
     </div>
 </div>

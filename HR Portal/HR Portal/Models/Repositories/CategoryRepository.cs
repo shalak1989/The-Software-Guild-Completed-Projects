@@ -34,5 +34,10 @@ namespace HR_Portal.Models.Repositories
         {
             _categories.Add(category);
         }
+
+        public static void Delete(int categoryId)
+        {
+            _categories.RemoveAll(c => c.CategoryId == categoryId);
+        }
     }
 }

@@ -1,0 +1,54 @@
+﻿@model HR_Portal.Models.ViewModels.PolicyVM
+
+@{
+    ViewBag.Title = "Manage Policies";
+}
+
+<h2>Manage Policies</h2>
+
+<div class="col-xs-12 col-sm-9">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>Policy List</h4>
+
+            <br /> 
+            <div>@Html.ActionLink("Add a Policy", "AddPolicy", "Home", null, new { @class = "btn btn-primary" })</div>
+            <br /> 
+
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    Policy Category
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    @foreach (var category in Model.CategoryItems)
+                    {
+                        <li><a href="/Home/ManagePolicies/?category=@category.Value">@category.Text</a></li>
+                    }
+                </ul>
+            </div>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Policy ID</th>
+                        <th>Policy Name</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var policy in Model.PolicyItems)
+                    {
+                        <tr>
+                            <td>@policy.PolicyId</td>
+                            <td>@policy.Name</td>
+                            <td>@policy.Category.CategoryName</td>
+                            <td>@Html.ActionLink("Delete", "DeletePolicy", "Home", new { policyId = policy.PolicyId }, null)</td>
+                            @*<td><a href="/Home/ViewPolicyItem?policyId=@policy.PolicyId">View</a></td>*@
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

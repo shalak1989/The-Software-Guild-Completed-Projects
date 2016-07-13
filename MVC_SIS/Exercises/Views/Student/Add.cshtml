@@ -54,3 +54,25 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $("form").submit(function (e) {
+                e.preventDefault();//stop the form from submitting
+
+                $.ajax({
+                    url: "/student/add",
+                    method: "POST",
+                    data: $(this).serialize()//this is whatever triggered this event, could also use "form"
+                })
+                .done(function (data) {
+                    alert("The ajax worked!");
+                });
+            });
+        });
+
+    </script>
+    
+    
+    }

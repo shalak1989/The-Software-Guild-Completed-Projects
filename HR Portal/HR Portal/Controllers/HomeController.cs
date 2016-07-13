@@ -141,6 +141,28 @@ namespace HR_Portal.Controllers
             return RedirectToAction("ManagePolicies");
         }
 
+        [HttpGet]
+        public ActionResult apply()
+        {
+            Application application = new Application();
+
+            return View(application);
+        }
+
+        [HttpPost]
+        public ActionResult apply(Application application)
+        {
+            ApplicationRepository.Add(application);
+
+            return RedirectToAction("apply");
+        }
+
+        [HttpGet]
+        public ActionResult SubmitTimeSheet()
+        {
+
+        }
+
     }
 }
 

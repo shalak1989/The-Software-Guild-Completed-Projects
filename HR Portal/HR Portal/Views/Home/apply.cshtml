@@ -1,0 +1,54 @@
+﻿@model HR_Portal.Models.Data.Application
+@{
+    ViewBag.Title = "Add Application";
+}
+
+<h2>Application Information</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                <label>Category Name</label>
+                @Html.TextBoxFor(a => a.FirstName, new { @class = "form-control", placeholder = "First Name" })
+            </div>
+
+            <div class="form-group">
+                <label>Category Name</label>
+                @Html.TextBoxFor(a => a.LastName, new { @class = "form-control", placeholder = "Last Name" })
+            </div>
+
+            <div class="form-group">
+                <label>Position</label>
+                @Html.TextBoxFor(a => a.Position, new { @class = "form-control", placeholder = "Position you are appling for" })
+            </div>
+
+            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+        }
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $("form").submit(function (e) {
+                e.preventDefault();//stop the form from submitting
+
+                $.ajax({
+                    url: "/home/apply",
+                    method: "POST",
+                    data: $(this).serialize()//this is whatever triggered this event, could also use "form"
+                })
+                .done(function (data) {
+                    alert("Your application has been submitted successfully!");
+                });
+            });
+
+            $("#topLevelMenu").hide()
+        });
+
+    </script>
+
+
+}      

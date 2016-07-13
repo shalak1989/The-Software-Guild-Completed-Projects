@@ -132,9 +132,12 @@ namespace HR_Portal.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPolicy(Category category)
+        public ActionResult AddPolicy(Policy policy)
         {
-            CategoryRepository.Add(category);
+            var category = CategoryRepository.Get(policy.Category.CategoryId);
+            policy.Category.CategoryName = category.CategoryName;
+
+            PolicyRepository.Add(policy);
             return RedirectToAction("ManagePolicies");
         }
 

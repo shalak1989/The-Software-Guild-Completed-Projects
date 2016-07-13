@@ -16,7 +16,7 @@ namespace HR_Portal.Models.Repositories
             {
                 new Policy {PolicyId = 1,
                     Category = new Category { CategoryId = 1, CategoryName = "Dress Code" },
-                    Name = "Dress Code",
+                    Name = "Appropriate Workplace Attire",
                     PolicyText = "The dress code for all employees is a clown suit" },
 
                 new Policy {PolicyId = 2,
@@ -47,6 +47,11 @@ namespace HR_Portal.Models.Repositories
         public static void Delete(int policyId)
         {
             _policies.RemoveAll(c => c.PolicyId == policyId);
+        }
+
+        public static void Add(Policy policy)
+        {
+            _policies.Add(policy);
         }
 
     }

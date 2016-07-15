@@ -130,11 +130,14 @@
     <Compile Include="Models\Data\Policy.cs" />
     <Compile Include="Models\Data\TimeSheet.cs" />
     <Compile Include="Models\Repositories\ApplicationRepository.cs" />
+    <Compile Include="Models\Repositories\TimeSheetRepository.cs" />
     <Compile Include="Models\Repositories\EmployeeRepository.cs" />
     <Compile Include="Models\Repositories\CategoryRepository.cs" />
     <Compile Include="Models\Repositories\PolicyRepository.cs" />
+    <Compile Include="Models\ViewModels\EmployeeVM.cs" />
     <Compile Include="Models\ViewModels\AddPolicyVM.cs" />
     <Compile Include="Models\ViewModels\PolicyVM.cs" />
+    <Compile Include="Models\ViewModels\TimeSheetVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +182,9 @@
     <Content Include="Views\Home\AddCategory.cshtml" />
     <Content Include="Views\Home\AddPolicy.cshtml" />
     <Content Include="Views\Home\apply.cshtml" />
+    <Content Include="Views\Home\ViewTimeSheet.cshtml" />
+    <Content Include="Views\Home\DeleteTimeSheet.cshtml" />
+    <Content Include="Views\Home\AddTimeSheet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

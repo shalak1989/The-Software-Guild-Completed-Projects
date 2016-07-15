@@ -158,41 +158,94 @@ namespace HR_Portal.Controllers
         }
 
         [HttpGet]
-        public ActionResult SubmitTimeSheet()
+        public ActionResult ViewTimeSheet(int? employeeId)
         {
+            
+            EmployeeVM employeeVM = new EmployeeVM();
 
+            employeeVM.SetEmployeeList(EmployeeRepository.GetAll());
+            if(employeeId.HasValue)
+                employeeVM.employee = EmployeeRepository.Get(employeeId.Value);
+
+            //employeeVM.employee.EmployeeId = employee.EmployeeId;
+
+            return View(employeeVM);
         }
+
+        [HttpGet]
+        public ActionResult DeleteTimeSheet(int timeSheetId)
+        {
+            var timeSheet = TimeSheetRepository.GetSingleTimeSheet(timeSheetId);
+            return View(timeSheet);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteTimeSheet(TimeSheet timeSheet)
+        {
+            TimeSheetRepository.Delete(timeSheet.TimeSheetID);
+            return RedirectToAction("ViewTimeSheet");
+        }
+
+        [HttpGet]
+        public ActionResult AddTimeSheet()
+        {
+            TimeSheetVM timeSheetVM = new TimeSheetVM();
+            var timeSheetList = TimeSheetRepository.GetAll();
+            var timeSheetCount = timeSheetList.Max(t => t.TimeSheetID);
+
+            timeSheetVM.SetEmployeesList(EmployeeRepository.GetAll());
+            timeSheetVM.TimeSheet.TimeSheetID = timeSheetCount + 1;
+
+            return View(timeSheetVM);
+        }
+
+        [HttpPost]
+        public ActionResult AddTimeSheet(TimeSheet timeSheet)
+        {   
+            if (ModelState.IsValid)
+            {
+                var employee = EmployeeRepository.Get(timeSheet.EmpID.Value);
+                timeSheet.FirstName = employee.FirstName;
+                timeSheet.LastName = employee.LastName;
+                timeSheet.TimeSubmitted = DateTime.Now;
+                TimeSheetRepository.Add(timeSheet);
+                return RedirectToAction("ViewTimeSheet");
+            }
+            TimeSheetVM timeSheetVM = new TimeSheetVM();
+            
+            timeSheetVM.SetEmployeesList(EmployeeRepository.GetAll());
+
+            return View(timeSheetVM);
+           
+        }
+
+
 
     }
 }
 
 //[HttpGet]
-//public ActionResult Add()
+//public ActionResult ViewPolicies(int? category)
 //{
-//    var viewModel = new StudentVM();
-//    viewModel.SetCourseItems(CourseRepository.GetAll());
-//    viewModel.SetMajorItems(MajorRepository.GetAll());
-//    return View(viewModel);
-//}
+//    PolicyVM policyViewModel = new PolicyVM();
 
-//[HttpPost]
-//public ActionResult Add(StudentVM studentVM)
-//{
-//    if (ModelState.IsValid)
+//    if (category == null)
 //    {
-//        studentVM.Student.Courses = new List<Course>();
-
-//        foreach (var id in studentVM.SelectedCourseIds)
-//            studentVM.Student.Courses.Add(CourseRepository.Get(id));
-
-//        studentVM.Student.Major = MajorRepository.Get(studentVM.Student.Major.MajorId);
-
-//        StudentRepository.Add(studentVM.Student);
-
-//        return RedirectToAction("List");
+//        policyViewModel.PolicyItems.AddRange(PolicyRepository.GetAll().ToList());
+//    }
+//    else
+//    {
+//        policyViewModel.PolicyItems.AddRange(PolicyRepository.GetAll().Where(p => p.Category.CategoryId == category).ToList());
 //    }
 
-//    studentVM.SetCourseItems(CourseRepository.GetAll());
-//    studentVM.SetMajorItems(MajorRepository.GetAll());
-//    return View(studentVM);
+//    policyViewModel.SetCategoryItems(CategoryRepository.GetAll());
+//    return View(policyViewModel);
+//}
+
+//[HttpGet]
+//public ActionResult ViewPolicyItem(int policyId)
+//{
+//    var policy = PolicyRepository.Get(policyId);
+
+//    return View(policy);
 //}

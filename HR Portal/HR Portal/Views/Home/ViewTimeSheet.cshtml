@@ -1,0 +1,89 @@
+﻿@model HR_Portal.Models.ViewModels.EmployeeVM
+@{
+    ViewBag.Title = "View Timesheets";
+}
+
+<h2>View Timesheets</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Timesheet List</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Policy Category
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" default="0">
+                @foreach (var employee in Model.employeeList)
+                {
+                    <li><a href="/Home/ViewTimeSheet/?employeeId=@employee.Value">@employee.Text</a></li>
+                }
+            </ul>
+        </div>
+              
+        <table>          
+                <tr><td><b>Hire Date:</b> @Model.employee.HireDate</td></tr>
+                <tr><td><b>First Name:</b> @Model.employee.FirstName</td></tr>
+                <tr><td><b>Last Name:</b> @Model.employee.LastName</td></tr>
+                <tr><td><b>Total Hours Worked:</b> @Model.employee.TotalHoursWorked</td></tr>
+        </table>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Hours Worked</th>
+                    <th>Time Submitted</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var timesheet in Model.employee.TimeSheetList)
+                {
+                    <tr> 
+                        <td>@timesheet.EmpID</td>
+                        <td>@timesheet.FirstName</td>
+                        <td>@timesheet.LastName</td>
+                        <td>@timesheet.HoursWorked</td>
+                        <td>@timesheet.TimeSubmitted</td>
+
+                        <td>@Html.ActionLink("Delete", "DeleteTimeSheet", "Home", new { timeSheetId = timesheet.TimeSheetID }, null)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>      
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $("form").submit(function (e) {
+                e.preventDefault();//stop the form from submitting
+
+                $.ajax({
+                    url: "/Home/ViewTimeSheet",
+                    method: "POST",
+                    data: $(this).serialize()//this is whatever triggered this event, could also use "form"
+                })
+                //.done(function (data) {
+                //    alert("The ajax worked!");
+                //});
+            });
+        });
+
+    </script>
+
+
+}
+
+

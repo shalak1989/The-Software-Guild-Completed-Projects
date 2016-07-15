@@ -1,0 +1,31 @@
+﻿@model HR_Portal.Models.Data.TimeSheet
+
+@{
+    ViewBag.Title = "Delete Timesheet";
+}
+
+<h2>Confirmation</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        @Html.ActionLink("Return to Timesheet List", "ViewTimeSheet", "Home")
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(t => t.TimeSheetID)
+            <table>
+                <tr><td><b>First Name:</b> @Model.FirstName</td></tr>
+                <tr><td><b>Last Name:</b> @Model.LastName</td></tr>
+                <tr><td><b>Time Submitted:</b> @Model.TimeSubmitted</td></tr>
+                <tr><td><b>Hours Worked:</b> @Model.HoursWorked</td></tr>
+            </table>
+
+            <p>Are you sure that you wish to delete above timesheet?</p>
+            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+            @Html.ActionLink("Cancel", "ViewTimeSheet", "Home", null, new { @class = "btn btn-sm btn-info" })
+        }
+    </div>
+</div>

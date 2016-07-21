@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>DVD Library</h1>
+    <p class="lead">Welcome to our DVD Library, please select from one of the options above.</p>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        @{
+            Html.RenderAction("LoadPartial");
+        }
+    </div>
+</div>
+

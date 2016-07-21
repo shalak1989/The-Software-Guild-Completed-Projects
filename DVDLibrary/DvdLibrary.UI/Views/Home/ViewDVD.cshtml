@@ -1,0 +1,72 @@
+﻿@model DVDLibrary.Models.DVD
+
+@{
+    ViewBag.Title = "ViewDVD";
+}
+
+<h2>View DVD</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        @{
+            Html.RenderAction("LoadPartial");
+        }
+    </div>
+</div>
+
+<table class="table table-bordered table-striped">
+<p><a href="/Home/ViewDVDList">Return to DVD List</a></p>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Director</th>
+            <th>Release Date</th>
+            <th>MPPA Rating</th>
+            <th>Studio</th>
+            <th>User Rating</th>
+            <th>User Notes</th>
+            <th>Actors</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Title</td>
+            <td>@Model.DirectorName</td>
+            <td>@Model.ReleaseDate.ToShortDateString()</td>
+            <td>@Model.MPAARating</td>
+            <td>@Model.Studio</td>
+            <td>@Model.UserRating</td>
+            <td>@Model.UserNotes</td>
+            <td>
+                @string.Join(", ", Model.Actors.ToArray())
+            </td>
+            
+
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Borrower Name</th>
+            <th>Date Borrowed</th>
+            <th>Date Returned</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var b in Model.BorrowerList)
+        {
+            <tr>
+                <td>@b.Name</td>
+                <td>@b.DateBorrowed.ToShortDateString()</td>
+                <td>@b.DateReturned.ToShortDateString()</td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+
+

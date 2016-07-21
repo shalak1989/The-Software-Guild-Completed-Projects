@@ -41,19 +41,7 @@ namespace HR_Portal.Models.Repositories
         {
             _employees.RemoveAll(e => e.EmployeeId == employeeId);
         }
-
-        public static List<TimeSheet> BuildFakeTimeSheets(int? employeeId, string firstName, string lastName)
-        {
-            List<TimeSheet> timesheets = new List<TimeSheet>() {
-                new TimeSheet {EmpID = employeeId , TimeSubmitted = DateTime.Now, FirstName = firstName, LastName = lastName, HoursWorked = 10, },
-                new TimeSheet {EmpID = employeeId , TimeSubmitted = DateTime.Now.AddDays(1), FirstName = firstName, LastName = lastName, HoursWorked = 13, },
-                new TimeSheet {EmpID = employeeId , TimeSubmitted = DateTime.Now.AddDays(2), FirstName = firstName, LastName = lastName, HoursWorked = 8, },
-            };
-
-            return timesheets;
-        }
-        
-
+       
 
     }
 }

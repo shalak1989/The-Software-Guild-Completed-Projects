@@ -103,7 +103,7 @@ namespace HR_Portal.Controllers
             Category category = new Category();
             var categoryList = CategoryRepository.GetAll();
             var categoryCount = categoryList.Max(c => c.CategoryId);
-            category.CategoryId = categoryCount + 1;
+            category.CategoryId = categoryCount + 1;//bump the categoryId max to the post
             return View(category);
         }
 
@@ -124,7 +124,7 @@ namespace HR_Portal.Controllers
             var policyList = PolicyRepository.GetAll();
             var policyCount = policyList.Max(p => p.PolicyId);
 
-            policy.PolicyId = policyCount + 1;
+            policy.PolicyId = policyCount + 1;//bump policyId count to the post method
 
             viewModel.Policy = policy;
 

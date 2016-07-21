@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Lookup";
+}
+
+<div class="row">
+    <div class="col-xs-6">
+        <h2>Search by ID</h2>
+        <div class="form-group">
+            <label>Contact Id</label>
+            <input type="text" id="contactId" class="form-control" />
+        </div>        
+        <button class="btn btn-primary" onclick="find()">Search</button>   
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <p id="contact" />    
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(function () {
+
+        });
+    </script>
+
+}
+

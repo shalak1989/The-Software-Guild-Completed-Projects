@@ -29,8 +29,23 @@ namespace DVDLibrary.BLL
             var newDVDList = DVDRepository.GetAll();
 
             return newDVDList;
-
             
+        }
+
+        public static List<DVD> AddDVD(DVD DVD)
+        {
+            var dvdListForCount = DVDRepository.GetAll();
+            var dvdIdCount = dvdListForCount.Max(d => d.DVDId);
+
+            var newDvdId = dvdIdCount + 1;
+
+            DVD.DVDId = newDvdId;
+            DVDRepository.Add(DVD);
+
+            var newDVDList = DVDRepository.GetAll();
+
+            return newDVDList;
+
         }
     }
 }

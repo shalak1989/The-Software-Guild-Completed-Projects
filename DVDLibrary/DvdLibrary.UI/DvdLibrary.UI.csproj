@@ -144,6 +144,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\app\createDVD.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -174,6 +175,7 @@
     <Content Include="Views\Home\ViewDVD.cshtml" />
     <Content Include="Views\Shared\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_DVDCount.cshtml" />
+    <Content Include="Views\Shared\_CreateDVDModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

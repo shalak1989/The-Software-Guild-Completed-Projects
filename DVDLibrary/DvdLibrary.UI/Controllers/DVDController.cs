@@ -13,17 +13,22 @@ namespace DVDLibrary.Controllers
 {
     public class DVDController : ApiController
     {
-        public DVD Get(int DVDId)
+
+
+        public List<DVD> Get()
         {
-            return DVDManager.GetDVD(DVDId);
+            var dvdList = DVDManager.GetDVDList();
+
+            return dvdList;
         }
 
-        public HttpResponseMessage Delete(int id)
+        public HttpResponseMessage Post(DVD newDVD)
         {
-            DVDManager.DeleteDVD(id);
 
-            var response = Request.CreateResponse(HttpStatusCode.NoContent);
+            DVDManager.AddDVD(newDVD);
 
+            var response = Request.CreateResponse(HttpStatusCode.Created, newDVD);
+           
             return response;
         }
 

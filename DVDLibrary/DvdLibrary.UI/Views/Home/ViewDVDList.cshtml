@@ -6,10 +6,18 @@
 
 <h2>ViewDVDList</h2>
 
+
+<div class="row">
+    <div class="col-xs-12">
+        @Html.Partial("_CreateDVDModal")
+    </div>
+</div>
+
 <div class="row">
     <div class="col-xs-12">
         @{
-            Html.RenderAction("LoadPartial");
+            //Html.RenderAction("LoadPartial");
+            @Html.Partial("_DVDCount", Model)
         }
     </div>
 </div>
@@ -23,10 +31,7 @@
     </p>
 }
 
-    @foreach (var dvd in Model)
-    {
-
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" id="dvdlistdiv">
             <thead>
                 <tr>
                     <th>Title</th>
@@ -40,30 +45,65 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>@dvd.Title</td>
-                    <td>@dvd.DirectorName</td>
-                    <td>@dvd.ReleaseDate.ToShortDateString()</td>
-                    <td>@dvd.MPAARating</td>
-                    <td>@dvd.Studio</td>
-                    <td>@dvd.UserRating</td>
-                    <td>@dvd.UserNotes</td>
-                    <td>
-                        @string.Join(", ", dvd.Actors.ToArray())
-                    </td>
-                    <td><a href="/Home/ViewDVD?DVDId=@dvd.DVDId">More Information</a></td>
-                    <td><a class="DeleteLink" href="/Home/DeleteDVD?DVDId=@dvd.DVDId">Delete</a></td>
 
+                <tr>
+                    @foreach (var dvd in Model)
+                    {
+                        <td>@dvd.Title</td>
+                        <td>@dvd.DirectorName</td>
+                        <td>@dvd.ReleaseDate.ToShortDateString()</td>
+                        <td>@dvd.MPAARating</td>
+                        <td>@dvd.Studio</td>
+                        <td>@dvd.UserRating</td>
+                        <td>@dvd.UserNotes</td>
+                        <td>
+                            @string.Join(", ", dvd.Actors.ToArray())
+                        </td>
+                        <td><a href="/Home/ViewDVD?DVDId=@dvd.DVDId">More Information</a></td>
+                        <td><a class="DeleteLink" href="/Home/DeleteDVD?DVDId=@dvd.DVDId">Delete</a></td>
+                    }
+ 
                 </tr>
             </tbody>
         </table>
-    }
+    
 
-            @section Scripts{
-                <script>
-                    $(function () {
+@section Scripts
+{
+    <script>
+        var uri = '/api/DVD';
 
-                    });
-                </script>
+        $(function () {
+            LoadDVDList();
 
+        });
+
+        function LoadDVDList() {
+            $.ajax({
+                method: "GET",
+                    url: uri
+            })
+
+            .done(function (data) { //this receives whatever the ajax call gets
+                //clear the table
+                $("#dvdlistdiv tbody tr").remove();
+
+                //on success, "data" contains a list of contacts
+                $.each(data, function (ViewDVDList, DVD) {
+                    //add a table row for the contact
+                    $(createRow(DVD)).appendTo($('#dvdlistdiv tbody'));
+                });
+            })
+            .fail(function () {
+                alert("Something went wrong")
+            });
+        };
+
+        function createRow(dvd) {
+            return '<tr><td>' + dvd.Title + '</td><td>' + dvd.DirectorName + '</td><td>' + dvd.ReleaseDate + '</td><td>' + dvd.MPAARating + '</td><td>'
+                + dvd.Studio + '</td><td>' + dvd.UserRating + '</td><td>' + dvd.UserNotes + '</td><td>' + dvd.Actors + '</td>' + '<td><a href="/Home/ViewDVD?DVDId=' + dvd.DVDId + '">More Information</a></td>' + '<td><a class="DeleteLink" href="/Home/DeleteDVD?DVDId=' + dvd.DVDId + '">Delete</a></td></tr>'
             }
+
+    </script>
+    <script src="~/Scripts/app/createDVD.js"></script>
+}

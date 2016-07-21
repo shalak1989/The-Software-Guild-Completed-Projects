@@ -41,7 +41,7 @@ namespace DVDLibrary.Controllers
 
         }
 
-        public ActionResult LoadPartial()
+        public ActionResult LoadPartial()//for partial view
         {
             List<DVD> dvd = new List<DVD>();
             dvd = DVDManager.GetDVDList();

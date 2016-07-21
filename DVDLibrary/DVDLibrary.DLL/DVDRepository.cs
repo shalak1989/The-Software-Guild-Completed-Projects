@@ -9,11 +9,13 @@ namespace DVDLibrary.DLL
 {
 
     public static class DVDRepository
-    {     
+    {
+        
         private static List<DVD> _dvds;
 
         static DVDRepository()
         {
+
             _dvds = new List<DVD>
             {
                 new DVD {
@@ -79,7 +81,10 @@ namespace DVDLibrary.DLL
 
         public static void Add(DVD DVD)
         {
-            _dvds.Add(DVD);
+            DVD dvdToAdd = new DVD();
+            dvdToAdd = DVD;
+
+            _dvds.Add(dvdToAdd);
         }
 
         public static void Delete(int DVDId)

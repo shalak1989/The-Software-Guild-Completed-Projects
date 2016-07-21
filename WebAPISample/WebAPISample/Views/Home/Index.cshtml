@@ -34,8 +34,12 @@
         });
 
         function loadContacts() {
-            $.getJSON(uri)
-            .done(function (data) {
+            $.ajax({
+                method: "GET",
+                    url: uri
+            })
+
+            .done(function (data) { //this receives whatever the ajax call gets
                 //clear the table
                 $("#contacts tbody tr").remove();
 
@@ -45,7 +49,10 @@
                     $(createRow(contact)).appendTo($('#contacts tbody'));
                 });
             })
-        }
+            .fail(function () {
+                alert("Something went wrong")
+            });
+        };
 
         function createRow(contact) {
             return '<tr><td>' + contact.ContactId + '</td><td>' +

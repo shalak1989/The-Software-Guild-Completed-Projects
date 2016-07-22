@@ -11,6 +11,8 @@ namespace DVDLibrary.Controllers
 {
     public class HomeController : Controller
     {
+        DVDManager mgr = new DVDManager();
+
         public ActionResult Index()
         {
             return View();
@@ -21,7 +23,7 @@ namespace DVDLibrary.Controllers
         {
             List<DVD> dvd = new List<DVD>();
 
-            dvd = DVDManager.GetDVDList();
+            dvd = mgr.GetDVDList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -35,7 +37,7 @@ namespace DVDLibrary.Controllers
         [HttpGet]
         public ActionResult ViewDVD(int DVDId)
         {
-            var dvd = DVDManager.GetDVD(DVDId);
+            var dvd = mgr.GetDVD(DVDId);
 
             return View(dvd);
 
@@ -44,7 +46,7 @@ namespace DVDLibrary.Controllers
         public ActionResult LoadPartial()//for partial view
         {
             List<DVD> dvd = new List<DVD>();
-            dvd = DVDManager.GetDVDList();
+            dvd = mgr.GetDVDList();
 
             return View("_DVDCount", dvd);
         }
@@ -52,7 +54,7 @@ namespace DVDLibrary.Controllers
         [HttpGet]
         public ActionResult DeleteDVD(int dvdId)
         {
-            var dvd = DVDManager.GetDVD(dvdId);
+            var dvd = mgr.GetDVD(dvdId);
 
             return View(dvd);
         }
@@ -60,7 +62,7 @@ namespace DVDLibrary.Controllers
         [HttpPost]
         public ActionResult DeleteDVD(DVD dvd)
         {
-            DVDManager.DeleteDVD(dvd.DVDId);
+            mgr.DeleteDVD(dvd.DVDId);
             return RedirectToAction("ViewDVDList");
 
         }

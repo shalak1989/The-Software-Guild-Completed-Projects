@@ -7,16 +7,10 @@ using DVDLibrary.Models;
 
 namespace DVDLibrary.DLL
 {
-
-    public class DVDRepository : IDVDRepository
+    public class FakeDVDRepository : IDVDRepository
     {
-        
-        private static List<DVD> _dvds;
 
-        static DVDRepository()
-        {
-
-            _dvds = new List<DVD>
+            private List<DVD> _dvds = new List<DVD>
             {
                 new DVD {
                 DVDId = 1,
@@ -66,7 +60,6 @@ namespace DVDLibrary.DLL
 
                     } },
             };
-        }
 
         public List<DVD> GetAll()
         {
@@ -91,49 +84,6 @@ namespace DVDLibrary.DLL
         {
             _dvds.RemoveAll(d => d.DVDId == DVDId);
         }
-
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
+    }      
 }
-
-
-    
-
-           
-
-        
-                
-
-            
-
-            
 

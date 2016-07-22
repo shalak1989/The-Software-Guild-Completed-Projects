@@ -8,41 +8,53 @@ using DVDLibrary.Models;
 
 namespace DVDLibrary.BLL
 {
-    public static class DVDManager
+    public class DVDManager : IDVDManager
     {
-        public static List<DVD> GetDVDList()
+        IDVDRepository _repo;
+
+        public DVDManager() : this(new DVDRepository())
         {
-            var dvdList = DVDRepository.GetAll();
+
+        }
+
+        public DVDManager(IDVDRepository repo)
+        {
+            _repo = repo;
+        }
+
+        public List<DVD> GetDVDList()
+        {
+            var dvdList = _repo.GetAll();
             return dvdList;
         }
 
-        public static DVD GetDVD(int DVDId)
+        public DVD GetDVD(int DVDId)
         {
-            var dvd = DVDRepository.Get(DVDId);
+            var dvd = _repo.Get(DVDId);
             return dvd;
         }
 
-        public static List<DVD> DeleteDVD(int DVDId)
+        public List<DVD> DeleteDVD(int DVDId)
         {
-            DVDRepository.Delete(DVDId);
+            _repo.Delete(DVDId);
 
-            var newDVDList = DVDRepository.GetAll();
+            var newDVDList = _repo.GetAll();
 
             return newDVDList;
             
         }
 
-        public static List<DVD> AddDVD(DVD DVD)
+        public List<DVD> AddDVD(DVD DVD)
         {
-            var dvdListForCount = DVDRepository.GetAll();
+            var dvdListForCount = _repo.GetAll();
             var dvdIdCount = dvdListForCount.Max(d => d.DVDId);
 
             var newDvdId = dvdIdCount + 1;
 
             DVD.DVDId = newDvdId;
-            DVDRepository.Add(DVD);
+            _repo.Add(DVD);
 
-            var newDVDList = DVDRepository.GetAll();
+            var newDVDList = _repo.GetAll();
 
             return newDVDList;
 

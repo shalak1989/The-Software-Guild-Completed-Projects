@@ -13,11 +13,12 @@ namespace DVDLibrary.Controllers
 {
     public class DVDController : ApiController
     {
+        DVDManager mgr = new DVDManager();
 
 
         public List<DVD> Get()
         {
-            var dvdList = DVDManager.GetDVDList();
+            var dvdList = mgr.GetDVDList();
 
             return dvdList;
         }
@@ -25,7 +26,7 @@ namespace DVDLibrary.Controllers
         public HttpResponseMessage Post(DVD newDVD)
         {
 
-            DVDManager.AddDVD(newDVD);
+            mgr.AddDVD(newDVD);
 
             var response = Request.CreateResponse(HttpStatusCode.Created, newDVD);
            

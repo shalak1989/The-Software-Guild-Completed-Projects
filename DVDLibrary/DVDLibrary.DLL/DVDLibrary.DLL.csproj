@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DVDRepository.cs" />
+    <Compile Include="FakeDVDRepository.cs" />
+    <Compile Include="IDVDRepository.cs" />
     <Compile Include="Properties\RenterRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

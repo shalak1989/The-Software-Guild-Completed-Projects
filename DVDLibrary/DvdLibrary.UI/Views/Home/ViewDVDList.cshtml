@@ -88,11 +88,13 @@
                 //clear the table
                 $("#dvdlistdiv tbody tr").remove();
 
-                //on success, "data" contains a list of contacts
+                //on success, "data" contains a list of dvds
                 $.each(data, function (ViewDVDList, DVD) {
                     //add a table row for the contact
                     $(createRow(DVD)).appendTo($('#dvdlistdiv tbody'));
                 });
+
+                $("#dvdCount").text('Current DVD\'s In Library: ' + data.length)
             })
             .fail(function () {
                 alert("Something went wrong")

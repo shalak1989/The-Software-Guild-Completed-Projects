@@ -6,7 +6,10 @@ $().ready(function () {
         $('#addDVDModal').modal('show');
     });
 
-    $('#btnSaveDVD').click(function () {
+    $('#btnSaveDVD').click(function (e) {
+
+        e.preventDefault();
+
         var dvd = {};
 
         dvd.Title = $("#title").val();
@@ -18,16 +21,16 @@ $().ready(function () {
         dvd.UserNotes = $("#usernotes").val();
         dvd.Actors = $("#actors").val();
 
-        $.ajax({
-            url: '/api/dvd',
-            data: dvd,
-            //```{
-            //        Title: $("#title").val(), DirectorName: $("#directorname").val(), ReleaseDate: $("#releasedate").val(), MPAARating: $("#mpparating").val(),
-            //        Studio: $("#studio").val(), UserRating: $("#userrating").val(), UserNotes: $("#usernotes").val(), Actors: $("#actors").val()
-            //    },
-            //data: $("#myform").serialize()
-            method: "POST"
-        });
+        //$.ajax({
+        //    url: '/api/dvd',
+        //    data: dvd,
+        //    //```{
+        //    //        Title: $("#title").val(), DirectorName: $("#directorname").val(), ReleaseDate: $("#releasedate").val(), MPAARating: $("#mpparating").val(),
+        //    //        Studio: $("#studio").val(), UserRating: $("#userrating").val(), UserNotes: $("#usernotes").val(), Actors: $("#actors").val()
+        //    //    },
+        //    //data: $("#myform").serialize()
+        //    method: "POST"
+        //});
 
         $.post(uri, dvd)
             .done(function (data) {

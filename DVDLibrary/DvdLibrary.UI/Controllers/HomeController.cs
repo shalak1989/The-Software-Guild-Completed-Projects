@@ -49,7 +49,24 @@ namespace DVDLibrary.Controllers
             return View("_DVDCount", dvd);
         }
 
+        [HttpGet]
+        public ActionResult DeleteDVD(int dvdId)
+        {
+            var dvd = DVDManager.GetDVD(dvdId);
+
+            return View(dvd);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteDVD(DVD dvd)
+        {
+            DVDManager.DeleteDVD(dvd.DVDId);
+            return RedirectToAction("ViewDVDList");
+
+        }
+
     }
+
 
 
 }

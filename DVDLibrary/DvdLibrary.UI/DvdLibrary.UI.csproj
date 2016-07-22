@@ -176,6 +176,7 @@
     <Content Include="Views\Shared\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_DVDCount.cshtml" />
     <Content Include="Views\Shared\_CreateDVDModal.cshtml" />
+    <Content Include="Views\Home\DeleteDVD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

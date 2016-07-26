@@ -24,11 +24,11 @@
 
 @using (Html.BeginForm())
 {
-    <p>
-        Title: @Html.TextBox("searchString") 
+    <form>
+        Title: @Html.TextBox("searchString")
         <br /><br />
         <input type="submit" value="Filter" />
-    </p>
+    </form>
 }
 
         <table class="table table-bordered table-striped" id="dvdlistdiv">
@@ -46,24 +46,26 @@
             </thead>
             <tbody>
 
-                <tr>
+                
                     @foreach (var dvd in Model)
                     {
-                        <td>@dvd.Title</td>
-                        <td>@dvd.DirectorName</td>
-                        <td>@dvd.ReleaseDate.ToShortDateString()</td>
-                        <td>@dvd.MPAARating</td>
-                        <td>@dvd.Studio</td>
-                        <td>@dvd.UserRating</td>
-                        <td>@dvd.UserNotes</td>
-                        <td>
-                            @string.Join(", ", dvd.Actors.ToArray())
-                        </td>
-                        <td><a href="/Home/ViewDVD?DVDId=@dvd.DVDId">More Information</a></td>
-                        <td><a class="DeleteLink" href="/Home/DeleteDVD?DVDId=@dvd.DVDId">Delete</a></td>
+                        <tr>
+                            <td>@dvd.Title</td>
+                            <td>@dvd.DirectorName</td>
+                            <td>@dvd.ReleaseDate.ToShortDateString()</td>
+                            <td>@dvd.MPAARating</td>
+                            <td>@dvd.Studio</td>
+                            <td>@dvd.UserRating</td>
+                            <td>@dvd.UserNotes</td>
+                            <td>
+                                @string.Join(", ", dvd.Actors.ToArray())
+                            </td>
+                            <td><a href="/Home/ViewDVD?DVDId=@dvd.DVDId">More Information</a></td>
+                            <td><a class="DeleteLink" href="/Home/DeleteDVD?DVDId=@dvd.DVDId">Delete</a></td>
+                        </tr>
                     }
  
-                </tr>
+                
             </tbody>
         </table>
     
@@ -74,7 +76,7 @@
         var uri = '/api/DVD';
 
         $(function () {
-            LoadDVDList();
+           LoadDVDList();
 
         });
 

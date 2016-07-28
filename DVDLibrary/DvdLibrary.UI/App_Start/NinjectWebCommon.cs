@@ -63,7 +63,7 @@ namespace DvdLibrary.UI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IDVDRepository>().To<SQLRepository>();
+            kernel.Bind<IDVDRepository>().To<DVDRepository>();
 
             kernel.Bind<IDVDManager>().To<DVDManager>();
             //this is our config file

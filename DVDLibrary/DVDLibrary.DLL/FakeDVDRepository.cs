@@ -74,10 +74,14 @@ namespace DVDLibrary.DLL
 
         public void Add(DVD DVD)
         {
-            DVD dvdToAdd = new DVD();
-            dvdToAdd = DVD;
+            var dvdListForCount = GetAll();
+            var dvdIdCount = dvdListForCount.Max(d => d.DVDId);
 
-            _dvds.Add(dvdToAdd);
+            var newDvdId = dvdIdCount + 1;
+
+            DVD.DVDId = newDvdId;
+
+            _dvds.Add(DVD);
         }
 
         public void Delete(int DVDId)

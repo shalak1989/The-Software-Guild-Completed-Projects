@@ -49,7 +49,8 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>Borrower Name</th>
+            <th>Borrower First Name</th>
+            <th>Borrower Last Name</th>
             <th>Date Borrowed</th>
             <th>Date Returned</th>
         </tr>
@@ -59,7 +60,8 @@
         @foreach (var b in Model.BorrowerList)
         {
             <tr>
-                <td>@b.Name</td>
+                <td>@b.FirstName</td>
+                <td>@b.LastName</td>
                 <td>@b.DateBorrowed.ToShortDateString()</td>
                 <td>@b.DateReturned.ToShortDateString()</td>
             </tr>

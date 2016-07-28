@@ -42,9 +42,7 @@ namespace DVDLibrary.Controllers
             {
                 dvd = _mgr.GetDVDList();
             }
-            
 
-           
 
             return View(dvd);
 

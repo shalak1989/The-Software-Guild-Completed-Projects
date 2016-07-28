@@ -10,7 +10,7 @@ namespace DVDLibrary.BLL
 {
     public class DVDManager : IDVDManager
     {
-        IDVDRepository _repo;
+        private IDVDRepository _repo;
 
         public DVDManager(IDVDRepository repo)
         {

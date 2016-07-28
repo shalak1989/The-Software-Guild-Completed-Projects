@@ -12,11 +12,6 @@ namespace DVDLibrary.BLL
     {
         IDVDRepository _repo;
 
-        public DVDManager() : this(new DVDRepository())
-        {
-
-        }
-
         public DVDManager(IDVDRepository repo)
         {
             _repo = repo;

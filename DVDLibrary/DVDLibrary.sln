@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVDLibrary.Test", "DVDLibra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DvdLibrary.UI", "DvdLibrary.UI\DvdLibrary.UI.csproj", "{622BDC19-4CDF-44CA-A86F-454040013572}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScratchPad", "ScratchPad\ScratchPad.csproj", "{677CEBE7-4A42-45D3-A272-6B0080B657E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{622BDC19-4CDF-44CA-A86F-454040013572}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{622BDC19-4CDF-44CA-A86F-454040013572}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{622BDC19-4CDF-44CA-A86F-454040013572}.Release|Any CPU.Build.0 = Release|Any CPU
+		{677CEBE7-4A42-45D3-A272-6B0080B657E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{677CEBE7-4A42-45D3-A272-6B0080B657E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{677CEBE7-4A42-45D3-A272-6B0080B657E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{677CEBE7-4A42-45D3-A272-6B0080B657E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,7 +11,12 @@ namespace DVDLibrary.Controllers
 {
     public class HomeController : Controller
     {
-        DVDManager mgr = new DVDManager();
+        IDVDManager _mgr;
+
+        public HomeController(IDVDManager mgr)
+        {
+            _mgr = mgr;
+        }
 
         public ActionResult Index()
         {
@@ -23,12 +28,23 @@ namespace DVDLibrary.Controllers
         {
             List<DVD> dvd = new List<DVD>();
 
-            dvd = mgr.GetDVDList();
-
-            if (!String.IsNullOrEmpty(searchString))
+            if(!string.IsNullOrEmpty(searchString))
             {
-                dvd = dvd.FindAll(s => s.Title.Contains(searchString));
+                StringComparison comp = StringComparison.OrdinalIgnoreCase;
+                foreach (var item in _mgr.GetDVDList())
+                {
+                    if (item.Title.IndexOf(searchString, comp) >= 0)
+                        dvd.Add(item);
+                }
+                return Json(dvd);
             }
+            else
+            {
+                dvd = _mgr.GetDVDList();
+            }
+            
+
+           
 
             return View(dvd);
 
@@ -37,7 +53,7 @@ namespace DVDLibrary.Controllers
         [HttpGet]
         public ActionResult ViewDVD(int DVDId)
         {
-            var dvd = mgr.GetDVD(DVDId);
+            var dvd = _mgr.GetDVD(DVDId);
 
             return View(dvd);
 
@@ -46,7 +62,7 @@ namespace DVDLibrary.Controllers
         public ActionResult LoadPartial()//for partial view
         {
             List<DVD> dvd = new List<DVD>();
-            dvd = mgr.GetDVDList();
+            dvd = _mgr.GetDVDList();
 
             return View("_DVDCount", dvd);
         }
@@ -54,7 +70,7 @@ namespace DVDLibrary.Controllers
         [HttpGet]
         public ActionResult DeleteDVD(int dvdId)
         {
-            var dvd = mgr.GetDVD(dvdId);
+            var dvd = _mgr.GetDVD(dvdId);
 
             return View(dvd);
         }
@@ -62,7 +78,7 @@ namespace DVDLibrary.Controllers
         [HttpPost]
         public ActionResult DeleteDVD(DVD dvd)
         {
-            mgr.DeleteDVD(dvd.DVDId);
+            _mgr.DeleteDVD(dvd.DVDId);
             return RedirectToAction("ViewDVDList");
 
         }

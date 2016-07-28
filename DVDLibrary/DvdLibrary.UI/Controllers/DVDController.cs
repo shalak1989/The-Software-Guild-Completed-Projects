@@ -13,20 +13,47 @@ namespace DVDLibrary.Controllers
 {
     public class DVDController : ApiController
     {
-        DVDManager mgr = new DVDManager();
+        IDVDManager _mgr;
+
+        public DVDController(IDVDManager mgr)
+        {
+            _mgr = mgr;
+        }
 
 
         public List<DVD> Get()
         {
-            var dvdList = mgr.GetDVDList();
+            var dvdList = _mgr.GetDVDList();
 
             return dvdList;
+        }
+
+        public List<DVD> Get(string searchString)
+        {
+            List<DVD> dvd = new List<DVD>();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                StringComparison comp = StringComparison.OrdinalIgnoreCase;
+                foreach (var item in _mgr.GetDVDList())
+                {
+                    if (item.Title.IndexOf(searchString, comp) >= 0)
+                        dvd.Add(item);
+                }
+               
+            }
+            else
+            {
+                dvd = _mgr.GetDVDList();
+            }
+
+            return (dvd);
         }
 
         public HttpResponseMessage Post(DVD newDVD)
         {
 
-            mgr.AddDVD(newDVD);
+            _mgr.AddDVD(newDVD);
 
             var response = Request.CreateResponse(HttpStatusCode.Created, newDVD);
            

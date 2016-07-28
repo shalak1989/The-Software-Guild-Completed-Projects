@@ -58,7 +58,11 @@
                             <td>@dvd.UserRating</td>
                             <td>@dvd.UserNotes</td>
                             <td>
-                                @string.Join(", ", dvd.Actors.ToArray())
+                                @for (int i = 0; i < dvd.Actors.Count; i++)
+                                {
+                                    @dvd.Actors
+                                }
+                                @dvd.Actors.ToString();
                             </td>
                             <td><a href="/Home/ViewDVD?DVDId=@dvd.DVDId">More Information</a></td>
                             <td><a class="DeleteLink" href="/Home/DeleteDVD?DVDId=@dvd.DVDId">Delete</a></td>
@@ -76,7 +80,33 @@
         var uri = '/api/DVD';
 
         $(function () {
-           LoadDVDList();
+            LoadDVDList();
+
+            $("form").submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    method: "GET",
+                    url: uri + "?searchString=" + $("#searchString").val()
+                    //data: { searchString: $("#searchString").val() }
+                    //data: $(this).serialize()
+                })
+
+            .done(function (data) { //this receives whatever the ajax call gets
+                //clear the table
+                $("#dvdlistdiv tbody tr").remove();
+
+                //on success, "data" contains a list of dvds
+                $.each(data, function (ViewDVDList, DVD) {
+                    //add a table row for the contact
+                    $(createRow(DVD)).appendTo($('#dvdlistdiv tbody'));
+                });
+
+                $("#dvdCount").text('Current DVD\'s In Library: ' + data.length)
+            })
+            .fail(function () {
+                alert("Something went wrong")
+            });
+            });
 
         });
 

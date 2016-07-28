@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C3FB6728-BC14-4EAC-87EB-4F4BFA78CE44}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{677CEBE7-4A42-45D3-A272-6B0080B657E2}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DVDLibrary.DLL</RootNamespace>
-    <AssemblyName>DVDLibrary.DLL</AssemblyName>
+    <RootNamespace>ScratchPad</RootNamespace>
+    <AssemblyName>ScratchPad</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,7 +34,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,15 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\Settings.cs" />
-    <Compile Include="DVDRepository.cs" />
-    <Compile Include="FakeDVDRepository.cs" />
-    <Compile Include="IDVDRepository.cs" />
-    <Compile Include="Properties\RenterRepository.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SQLRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DVDLibrary.BLL\DVDLibrary.BLL.csproj">
+      <Project>{0cc76cb9-c4e8-4d4f-9279-d92917c20ec5}</Project>
+      <Name>DVDLibrary.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVDLibrary.DLL\DVDLibrary.DLL.csproj">
+      <Project>{c3fb6728-bc14-4eac-87eb-4f4bfa78ce44}</Project>
+      <Name>DVDLibrary.DLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DVDLibrary.Models\DVDLibrary.Models.csproj">
       <Project>{aca3127f-7dab-4846-a8b2-9be9c2f9134c}</Project>
       <Name>DVDLibrary.Models</Name>

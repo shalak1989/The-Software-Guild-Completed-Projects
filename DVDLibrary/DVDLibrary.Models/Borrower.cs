@@ -8,7 +8,8 @@ namespace DVDLibrary.Models
 {
     public class Borrower
     {
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public DateTime DateBorrowed { get; set; }
         public DateTime DateReturned { get; set; }
     }

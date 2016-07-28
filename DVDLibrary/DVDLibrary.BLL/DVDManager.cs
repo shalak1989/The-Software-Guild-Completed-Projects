@@ -41,12 +41,6 @@ namespace DVDLibrary.BLL
 
         public List<DVD> AddDVD(DVD DVD)
         {
-            var dvdListForCount = _repo.GetAll();
-            var dvdIdCount = dvdListForCount.Max(d => d.DVDId);
-
-            var newDvdId = dvdIdCount + 1;
-
-            DVD.DVDId = newDvdId;
             _repo.Add(DVD);
 
             var newDVDList = _repo.GetAll();

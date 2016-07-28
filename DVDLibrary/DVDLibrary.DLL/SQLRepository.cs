@@ -184,7 +184,7 @@ namespace DVDLibrary.DLL
 
         public void Add(DVD DVD)
         {
-            DVD dvd = new DVD();
+            //DVD dvd = new DVD();
 
             using (var cn = new SqlConnection(Settings.ConnectionString))
             {
@@ -193,12 +193,13 @@ namespace DVDLibrary.DLL
                 cmd.CommandType = CommandType.StoredProcedure;
                 //cmd.Parameters.AddWithValue("@DVDId", dvd.DVDId);not needed because I am adding a new one? 
                                                                    //Auto count from identity in SQL?
-                cmd.Parameters.Add("@DVDTitle", SqlDbType.VarChar);
-                cmd.Parameters.Add("@DVDReleaseDate", SqlDbType.Date);
-                cmd.Parameters.Add("@DVDMPPARatingId", SqlDbType.NChar);
-                cmd.Parameters.Add("@DVDStudio", SqlDbType.VarChar);
-                cmd.Parameters.Add("@DVDUserRating", SqlDbType.Decimal);
-                cmd.Parameters.Add("@DVDUserNotes", SqlDbType.VarChar);
+                cmd.Parameters.Add("@DVDTitle", SqlDbType.VarChar).Value = DVD.Title;
+                cmd.Parameters.Add("@DVDReleaseDate", SqlDbType.Date).Value = DVD.ReleaseDate;
+                cmd.Parameters.Add("@DVDMPPARatingId", SqlDbType.NChar).Value = DVD.MPAARating;
+                cmd.Parameters.Add("@DVDStudio", SqlDbType.VarChar).Value = DVD.Studio;
+                cmd.Parameters.Add("@DVDUserRating", SqlDbType.Decimal).Value = DVD.UserRating;
+                cmd.Parameters.Add("@DVDUserNotes", SqlDbType.VarChar).Value = (object)DVD.UserNotes ?? DBNull.Value;
+                               
                 try
                 {
                     cmd.Connection = cn;

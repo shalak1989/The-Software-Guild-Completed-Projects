@@ -10,6 +10,8 @@ namespace BaseballLeague.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using DLL;
+    using BLL;
 
     public static class NinjectWebCommon 
     {
@@ -61,9 +63,9 @@ namespace BaseballLeague.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            //kernel.Bind<IDVDRepository>().To<DVDRepository>();
+            kernel.Bind<IBaseballRepo>().To<BaseballRepo>();
 
-            //kernel.Bind<IDVDManager>().To<DVDManager>();
+            kernel.Bind<BaseballServicesManager>().To<BaseballServicesManager>();
         }        
     }
 }

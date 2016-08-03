@@ -43,6 +43,16 @@
     <Compile Include="BaseballServicesManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseballLeague.DLL\BaseballLeague.DLL.csproj">
+      <Project>{c645ea99-cc40-4bf7-80ae-12f102e4076f}</Project>
+      <Name>BaseballLeague.DLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BaseballLeague.Models\BaseballLeague.Models.csproj">
+      <Project>{fdc150fe-eac8-4fa9-9538-69d1a48d731c}</Project>
+      <Name>BaseballLeague.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

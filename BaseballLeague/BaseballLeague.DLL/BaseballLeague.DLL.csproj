@@ -41,8 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseballSQLRepo.cs" />
+    <Compile Include="BaseballRepo.cs" />
     <Compile Include="Config\Settings.cs" />
+    <Compile Include="IBaseballRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

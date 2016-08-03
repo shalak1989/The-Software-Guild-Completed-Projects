@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaseballLeague.Test
+namespace EntityFrameworkModelFirst
 {
     public class Class1
     {

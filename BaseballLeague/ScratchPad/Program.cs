@@ -13,7 +13,17 @@ namespace ScratchPad
     {
        public static void Main()
         {
-            Scratch.ShowAllPlayers();
+
+            Player player = new Player();
+
+            Console.WriteLine("Enter the ID of the player you wish to trade: ");
+            player.PlayerId = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter the ID of the team that you wish to trade the player to: ");
+            player.TeamId = int.Parse(Console.ReadLine());
+
+            Scratch.TradePlayer(player);
+
             Console.ReadLine();
         }
             

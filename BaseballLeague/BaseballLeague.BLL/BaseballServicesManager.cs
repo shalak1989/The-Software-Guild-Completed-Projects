@@ -38,9 +38,11 @@ namespace BaseballLeague.BLL
             return team;
         }
 
-        public void TradePlayer(int playerId)
+        public void TradePlayer(int playerId, int teamId)
         {
             var player = _repo.GetIndivdualPlayer(playerId);
+
+            player.Team.TeamId = teamId;
 
             _repo.TradePlayer(player);
         }
@@ -55,6 +57,18 @@ namespace BaseballLeague.BLL
             var teams = _repo.GetAllTeams();
 
             return teams;
+        }
+
+        public void AddTeam(Team team)
+        {
+            _repo.AddTeam(team);
+        }
+
+        public List<League> GetAllLeagues()
+        {
+            var leagues = _repo.GetAllLeagues();
+
+            return leagues;
         }
 
     }

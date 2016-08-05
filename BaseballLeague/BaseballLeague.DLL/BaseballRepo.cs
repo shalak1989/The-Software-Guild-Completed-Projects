@@ -281,7 +281,8 @@ namespace BaseballLeague.DLL
             Team team = new Team();
 
             team.TeamId = (int)dr["TeamId"];
-            team.Name = dr["Name"].ToString();
+            team.Name = dr["TeamName"].ToString();
+            team.LeagueId = (int)dr["LeagueId"];
             team.ManagerFirstName = dr["ManagerFirstName"].ToString();
             team.ManagerLastName = dr["ManagerLastName"].ToString();
 

@@ -1,0 +1,50 @@
+﻿@model BaseballLeague.Models.TeamViewModel
+@{
+    ViewBag.Title = "ViewTeams";
+}
+
+<div class="col-xs-12 col-sm-9">
+    <div class="row">
+        <p class="col-xs-12">
+            <h4>Team List</h4>
+            
+                <div class="dropdown" style="float:left; padding-right:10px">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        League
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        @foreach (var league in Model.ListOfLeagues)
+                        {
+                            <li><a href="/Home/ViewTeams/?leagueId=@league.Value">@league.Text</a></li>
+                        }
+                        <li><a href="/Home/ViewTeams/">Default View</a></li>
+                    </ul>
+                </div>
+                <a href="/Home/AddTeam" class="btn" style="background-color:green; color:white">Add Team</a>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Team Name</th>
+                        <th>Manager Name</th>
+                        <th>Number Of Players</th>
+                        <th>League Name</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var team in Model.TeamList)
+                    {
+                        <tr>
+                            <td>@team.Name</td>
+                            <td>@team.ManagerFirstName @team.ManagerLastName</td>
+                            <td>@team.PlayersList.Count</td>
+                            <td>@Model.LeagueList.First(x => x.LeagueId == team.LeagueId).Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+</div>

@@ -73,14 +73,55 @@ namespace BaseballLeague.Controllers
         [HttpPost]
         public ActionResult TradePlayer(Player player)
         {
-            var team = _mgr.GetTeam(player);
-
-
-            player.Team.Name = "ValentineBullets";
-            player.Team.TeamId = 2;
-
-            _mgr.TradePlayer(player.PlayerId);
+            _mgr.TradePlayer(player.PlayerId, player.Team.TeamId);
             return RedirectToAction("ViewPlayerList");
+        }
+
+        [HttpGet]
+        public ActionResult ViewTeams(int? leagueId)
+        {
+            TeamViewModel teamViewModel = new TeamViewModel();
+
+            var playerList = _mgr.GetAllPlayers();
+            teamViewModel.SetListOfLeagues(_mgr.GetAllLeagues());
+      
+            teamViewModel.LeagueList = _mgr.GetAllLeagues();
+
+            if (leagueId == null)
+            {
+                teamViewModel.TeamList.AddRange(_mgr.GetAllTeams().ToList());
+  
+            }
+            else
+            {
+                teamViewModel.TeamList.AddRange(_mgr.GetAllTeams().Where(p => p.LeagueId == leagueId).ToList());
+                
+            }
+
+            foreach (var team in  teamViewModel.TeamList)
+            {
+                team.PlayersList = _mgr.GetAllPlayers().Where(x => x.Team.TeamId == team.TeamId).ToList();
+            }
+            return View(teamViewModel);
+        }
+
+        [HttpGet]
+        public ActionResult AddTeam()
+        {
+            TeamViewModel teamViewModel = new TeamViewModel();
+
+            teamViewModel.SetListOfLeagues(_mgr.GetAllLeagues());
+
+            teamViewModel.LeagueList = _mgr.GetAllLeagues();
+
+            return View(teamViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddTeam(Team team)
+        {
+            _mgr.AddTeam(team);
+           return RedirectToAction("ViewTeams");
         }
     }
 }

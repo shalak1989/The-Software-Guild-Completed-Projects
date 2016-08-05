@@ -1,0 +1,42 @@
+﻿@model BaseballLeague.Models.TeamViewModel
+@{
+    ViewBag.Title = "AddTeam";
+}
+
+<h2>Add Team</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        @Html.ActionLink("Return to Team List", "ViewTeams", "Home")
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(p => p.Team.TeamId)
+            <div class="form-group">
+                <label>Team Name</label>
+                @Html.TextBoxFor(p => p.Team.Name, new { @class = "form-control", placeholder = "Team Name" })
+            </div>
+
+            <div class="form-group">
+                <label>Manager First Name</label>
+                @Html.TextBoxFor(p => p.Team.ManagerFirstName, new { @class = "form-control", placeholder = "First Name" })
+            </div>
+
+            <div styleclass="form-group">
+                <label>Manager Last Name</label>
+                @Html.TextBoxFor(p => p.Team.ManagerLastName, new { @class = "form-control", placeholder = "Last Name" })
+            </div>
+            <br />
+            <div styleclass="form-group" style="float:left; padding-right:5px;">
+                <label>League</label>
+                @Html.DropDownListFor(p => p.Team.LeagueId, Model.ListOfLeagues)
+            </div>
+            <br /><br />
+
+            <p><button type="submit" class="btn btn-sm btn-primary">Save</button></p>
+        }
+    </div>
+</div>

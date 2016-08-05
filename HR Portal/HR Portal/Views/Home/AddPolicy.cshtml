@@ -26,7 +26,7 @@
                 <label>Policy Content</label>
                 @Html.TextBoxFor(p => p.Policy.PolicyText, new { @class = "form-control", placeholder = "Policy Text" })
             </div>
-
+            <br />
             <div styleclass="form-group" style="float:left; padding-right:5px;">
                 <label>Category</label>
                 @Html.DropDownListFor(p => p.Policy.Category.CategoryId, Model.CategoryItems)

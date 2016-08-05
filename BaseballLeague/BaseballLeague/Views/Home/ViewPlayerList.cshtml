@@ -6,10 +6,15 @@
 
 <h2>Player List</h2>
 
+<div class="row">
+    <div class="col-xs-12">
+        @Html.Partial("_CreatePlayerModal")
+    </div>
+</div>
+
 <div class="col-xs-12 col-sm-9">
     <div class="row">
         <div class="col-xs-12">
-            <h4>Policy List</h4>
 
             <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -31,6 +36,7 @@
                         <th>Team Name</th>
                         <th>Position Name</th>
                         <th>Jersey Number</th>
+                        <th>Batting Average</th>
                         <th>Years Played</th>
                     </tr>
                 </thead>
@@ -43,8 +49,15 @@
                             <td>@player.Team.Name</td>
                             <td>@player.Position.PositionName</td>
                             <td>@player.JerseyNumber</td>
+                            @if (player.PreviousYearsBattingAverage == null)
+                            {
+                                <td>No Batting History</td>
+                            }
+                            else
+                            {
+                                <td>@player.PreviousYearsBattingAverage</td>
+                            }
                             <td>@player.YearsPlayed</td>
-                            <td><a href="/Home/ViewPlayer?playerId=@player.PlayerId">View</a></td>
                             <td><a href="/Home/TradePlayer?playerId=@player.PlayerId">Trade</a></td>
                             <td><a href="/Home/DeletePlayer?playerId=@player.PlayerId">Delete</a></td>
                         </tr>
@@ -55,3 +68,69 @@
         </div>
     </div>
 </div>
+
+@section Scripts
+{
+    <script>
+        var uri = '/api/Player';
+
+        $(function () {
+            LoadDVDList();
+
+            $("form").submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    method: "GET",
+                    url: uri 
+
+                })
+
+            .done(function (data) { //this receives whatever the ajax call gets
+                //clear the table
+                $("#dvdlistdiv tbody tr").remove();
+
+                //on success, "data" contains a list of dvds
+                $.each(data, function (ViewDVDList, DVD) {
+                    //add a table row for the contact
+                    $(createRow(DVD)).appendTo($('#dvdlistdiv tbody'));
+                });
+
+            })
+            .fail(function () {
+                alert("Something went wrong")
+            });
+            });
+
+        });
+
+        function LoadDVDList() {
+            $.ajax({
+                method: "GET",
+                    url: uri
+            })
+
+            .done(function (data) { //this receives whatever the ajax call gets
+                //clear the table
+                $("#dvdlistdiv tbody tr").remove();
+
+                //on success, "data" contains a list of dvds
+                $.each(data, function (ViewDVDList, DVD) {
+                    //add a table row for the contact
+                    $(createRow(DVD)).appendTo($('#dvdlistdiv tbody'));
+                });
+
+                $("#dvdCount").text('Current DVD\'s In Library: ' + data.length)
+            })
+            .fail(function () {
+                alert("Something went wrong")
+            });
+        };
+
+        function createRow(dvd) {
+            return '<tr><td>' + dvd.Title + '</td><td>' + dvd.DirectorName + '</td><td>' + dvd.ReleaseDate + '</td><td>' + dvd.MPAARating + '</td><td>'
+                + dvd.Studio + '</td><td>' + dvd.UserRating + '</td><td>' + dvd.UserNotes + '</td><td>' + dvd.Actors + '</td>' + '<td><a href="/Home/ViewDVD?DVDId=' + dvd.DVDId + '">More Information</a></td>' + '<td><a class="DeleteLink" href="/Home/DeleteDVD?DVDId=' + dvd.DVDId + '">Delete</a></td></tr>'
+            }
+
+    </script>
+    <script src="~/Scripts/app/createDVD.js"></script>
+}

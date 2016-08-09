@@ -1,0 +1,42 @@
+﻿<!-- This View uses your Model -->
+@model BlogTestApp.Models.BlogPost
+
+    <!-- This will automatically post to your Index method
+     (that is decorated with a HttpPost attribute) -->
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(b => b.BlogId)
+        <div class="form-group">
+            <label>Post Name</label>
+            @Html.TextBoxFor(b => b.PostName, new { @class = "form-control", placeholder = "Post Title" })
+        </div>
+        @Html.AntiForgeryToken()
+        <div>
+             This will contain your HtmlContent and use the TinyMCE editor
+            @Html.TextAreaFor(b => b.Post)
+
+            <input type="submit" value="Create" />
+        </div>
+    }
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/tinymce/tinymce.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        tinyMCE.init({
+
+            // General options
+            selector: 'textarea',
+
+	    });
+
+    });
+
+</script>
+    
+    }
+
+    
+

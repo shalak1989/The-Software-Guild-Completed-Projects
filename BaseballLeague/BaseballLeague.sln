@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseballLeague.UI", "BaseballLeague\BaseballLeague.UI.csproj", "{AC98A786-AFCE-490B-B496-438A19557DB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScratchPad", "ScratchPad\ScratchPad.csproj", "{93685C7E-C6A1-44F9-8656-4F3EF13EA594}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseballLeague.BLL", "BaseballLeague.BLL\BaseballLeague.BLL.csproj", "{D7914BD6-48DA-43CF-9419-243B3006F0AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseballLeague.DLL", "BaseballLeague.DLL\BaseballLeague.DLL.csproj", "{C645EA99-CC40-4BF7-80AE-12F102E4076F}"
@@ -25,10 +23,6 @@ Global
 		{AC98A786-AFCE-490B-B496-438A19557DB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC98A786-AFCE-490B-B496-438A19557DB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC98A786-AFCE-490B-B496-438A19557DB0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93685C7E-C6A1-44F9-8656-4F3EF13EA594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93685C7E-C6A1-44F9-8656-4F3EF13EA594}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93685C7E-C6A1-44F9-8656-4F3EF13EA594}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93685C7E-C6A1-44F9-8656-4F3EF13EA594}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7914BD6-48DA-43CF-9419-243B3006F0AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D7914BD6-48DA-43CF-9419-243B3006F0AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7914BD6-48DA-43CF-9419-243B3006F0AE}.Release|Any CPU.ActiveCfg = Release|Any CPU

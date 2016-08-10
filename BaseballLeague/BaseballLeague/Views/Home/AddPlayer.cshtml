@@ -1,0 +1,56 @@
+﻿@model BaseballLeague.Models.PlayerViewModel
+@{
+    ViewBag.Title = "AddPlayer";
+}
+
+<h2>Add Player</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        @Html.ActionLink("Return to Team List", "ViewTeams", "Home")
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(p => p.Player.PlayerId)
+            <div class="form-group">
+                <label>Player First Name</label>
+                @Html.TextBoxFor(p => p.Player.FirstName, new { @class = "form-control", placeholder = "First Name" })
+            </div>
+
+            <div class="form-group">
+                <label>Player Last Name</label>
+                @Html.TextBoxFor(p => p.Player.LastName, new { @class = "form-control", placeholder = "Last Name" })
+            </div>
+
+            <div styleclass="form-group">
+                <label>Jersey Number</label>
+                @Html.TextBoxFor(p => p.Player.JerseyNumber, new { @class = "form-control", placeholder = "Jersey Number" })
+            </div>
+
+            <div styleclass="form-group">
+                <label>Previous Years Batting Average</label>
+                @Html.TextBoxFor(p => p.Player.PreviousYearsBattingAverage, new { @class = "form-control", placeholder = "Previous Years Batting Average" })
+            </div>
+            <br />
+
+            <div styleclass="form-group" style="padding-right:5px;">
+                <label>Team</label>
+                @Html.DropDownListFor(p => p.Player.Team.TeamId, Model.ListOfTeams);
+            </div>
+            <br />
+
+            <div styleclass="form-group" style="padding-right:5px;">
+                <label>Position</label>
+                @Html.DropDownListFor(p => p.Player.Position.PositionId, Model.ListOfPositions);
+            </div>
+
+
+            <br /><br />
+
+            <p><button type="submit" class="btn btn-sm btn-primary">Save</button></p>
+        }
+    </div>
+</div>

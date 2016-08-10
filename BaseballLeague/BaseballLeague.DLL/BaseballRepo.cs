@@ -186,7 +186,7 @@ namespace BaseballLeague.DLL
                 cmd.Parameters.AddWithValue("@FirstName", player.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", player.LastName);
                 cmd.Parameters.AddWithValue("@JerseyNumber", player.JerseyNumber);
-                cmd.Parameters.AddWithValue("@PreviousYearsBattingAverage", player.PreviousYearsBattingAverage).Value = (object)player.Position.PositionId ?? DBNull.Value;
+                cmd.Parameters.AddWithValue("@PreviousYearsBattingAverage", player.PreviousYearsBattingAverage).Value = (object)player.PreviousYearsBattingAverage ?? DBNull.Value;
                 cmd.Parameters.AddWithValue("@YearsPlayed", player.YearsPlayed);
                 cmd.Parameters.AddWithValue("@TeamId", player.Team.TeamId);
                 cmd.Parameters.AddWithValue("@PositionId", player.Position.PositionId);

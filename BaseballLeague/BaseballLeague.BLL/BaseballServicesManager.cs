@@ -17,6 +17,18 @@ namespace BaseballLeague.BLL
             _repo = repo;
         }
 
+        public void AddPlayer(Player player)
+        {
+            _repo.AddPlayer(player);
+        }
+
+        public List<Position> GetAllPositions()
+        {
+            var positionList = _repo.GetAllPositions();
+
+            return positionList;
+        }
+
         public List<Player> GetAllPlayers()
         {
             var playerList = _repo.GetAllPlayers();

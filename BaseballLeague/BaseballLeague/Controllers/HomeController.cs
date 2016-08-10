@@ -55,7 +55,8 @@ namespace BaseballLeague.Controllers
         public ActionResult DeletePlayer(Player player)
         {
             _mgr.DeletePlayer(player.PlayerId);
-            return RedirectToAction("ViewPlayerList");
+            //return RedirectToAction("ViewTeams?teamId=" + player.Team.TeamId);
+            return RedirectToAction("ViewTeams");
         }
 
         [HttpGet]
@@ -123,5 +124,28 @@ namespace BaseballLeague.Controllers
             _mgr.AddTeam(team);
            return RedirectToAction("ViewTeams");
         }
+
+        [HttpGet]
+        public ActionResult AddPlayer()
+        {
+            PlayerViewModel playerVM = new PlayerViewModel();
+
+            playerVM.SetListOfTeams(_mgr.GetAllTeams());
+            playerVM.SetListOfPositions(_mgr.GetAllPositions());
+
+            return View(playerVM);
+        }
+
+        [HttpPost]
+        public ActionResult AddPlayer(PlayerViewModel playerVM)
+        {
+            Player player = new Player();
+            player = playerVM.Player;
+
+            _mgr.AddPlayer(player);
+
+            return RedirectToAction("ViewPlayerList");
+        }
+        
     }
 }

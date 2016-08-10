@@ -6,17 +6,11 @@
 
 <h2>Player List</h2>
 
-<div class="row">
-    <div class="col-xs-12">
-        @Html.Partial("_CreatePlayerModal")
-    </div>
-</div>
-
 <div class="col-xs-12 col-sm-9">
     <div class="row">
         <div class="col-xs-12">
 
-            <div class="dropdown">
+            <div class="dropdown" style="float:left; padding-right:10px">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                     Teams
                     <span class="caret"></span>
@@ -27,7 +21,11 @@
                         <li><a href="/Home/ViewPlayerList/?teamId=@team.Value">@team.Text</a></li>
                     }
                 </ul>
+
             </div>
+
+            <a href="/Home/AddPlayer" class="btn" style="background-color:saddlebrown; color:white">Add Player</a>
+
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>

@@ -82,25 +82,3 @@ namespace BlogTestApp.DLL
         }
     }
 }
-
-//private Player PopulatePlayerFromDataReader(SqlDataReader dr)
-//{
-//    Player player = new Player();
-
-//    player.PlayerId = (int)dr["PlayerId"];
-//    player.FirstName = dr["FirstName"].ToString();
-//    player.LastName = dr["LastName"].ToString();
-//    player.JerseyNumber = (int)dr["JerseyNumber"];
-//    player.Position.PositionId = (int)dr["PositionId"];
-//    player.Position.PositionName = dr["PositionName"].ToString();
-//    player.Team.TeamId = (int)dr["TeamId"];
-//    player.Team.Name = dr["Name"].ToString();
-//    if (dr["PreviousYearsBattingAverage"] != DBNull.Value)
-//    {
-//        player.PreviousYearsBattingAverage = (decimal)dr["PreviousYearsBattingAverage"];
-//    }
-//    player.YearsPlayed = (int)dr["YearsPlayed"];
-
-//    return player;
-//}
-

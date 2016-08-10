@@ -278,6 +278,7 @@
     <Content Include="Views\Home\ViewTeams.cshtml" />
     <Content Include="Views\Home\AddTeam.cshtml" />
     <Content Include="Views\Shared\_CreatePlayerModal.cshtml" />
+    <Content Include="Views\Home\AddPlayer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

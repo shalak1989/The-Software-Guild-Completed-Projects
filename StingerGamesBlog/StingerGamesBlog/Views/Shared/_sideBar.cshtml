@@ -1,0 +1,27 @@
+﻿@model StingerGamesBlog.Models.PageListVM
+
+
+
+<div class="StaticPageLink">
+    <ul class="StaticPageLink" style="padding-left:10px;">
+        @if (ViewBag.IsAdmin)
+        {
+            <li><a href="~/home/CreateBlogPost" style="color:black;">New Post</a></li>
+            <li><a href="~/home/Admin" style="color:black;">Administration</a></li>
+        }
+        @if (ViewBag.IsContributor)
+        {
+            <li><a href="~/home/CreateBlogPost" style="color:black;">New Post</a></li>
+        }
+        <li class="dropdown StaticPageLink">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h4>Static Pages<span class="caret"></span></h4></a>
+            <ul class="dropdown-menu StaticPageLink" role="menu" style="list-style:none; padding-left:10px;">
+                @foreach (var item in Model.pageList)
+                {
+                    <li class="StaticPageLink"><a href="~/home/ViewStaticPage/?PageId=@item.PageId"><h4>@item.PageTitle</h4></a></li>
+                }
+            </ul>
+        </li>
+    </ul>
+</div>
+@Html.Action("_commonTagList", "Home")

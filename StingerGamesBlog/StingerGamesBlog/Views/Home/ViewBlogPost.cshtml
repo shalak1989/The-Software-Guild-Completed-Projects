@@ -1,0 +1,23 @@
+﻿@model StingerGamesBlog.Models.Blog
+
+@{
+    ViewBag.Title = "ViewBlogPost";
+}
+<div style="padding-bottom:80px;">
+    <div style="background-color:rgba(219, 233, 255, 0.3); padding:20px;">
+            <h1>Title: @Model.Title</h1>
+
+            <h4>Date: @Model.BlogDate.ToShortDateString()</h4>
+            <h4>Author: @Model.Author</h4>
+            <div style=" width: 70vw; word-wrap:break-word; ">
+                @Html.Raw(@Model.Content)
+            </div>
+        @if (Model.Tags != null)
+        {
+        foreach (var item in @Model.Tags)
+        {
+        <a href="~/Home/GetBlogsByHashtag?TagId=@item.TagId">@item.TagName</a>
+        }
+        }
+    </div>
+</div>

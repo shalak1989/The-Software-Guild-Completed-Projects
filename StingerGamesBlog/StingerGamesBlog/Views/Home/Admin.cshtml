@@ -1,0 +1,96 @@
+﻿@model StingerGamesBlog.Models.AdminVM
+
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+
+<h1>Administration</h1>
+<a href="~/home/CreateStaticPage" style="color:black;">Create A New Page</a>
+<div>
+    <h3>Static Pages</h3>
+    <table style="width:100%">
+        <tr>
+            <th>
+                Page Title
+            </th>
+        </tr>
+        @foreach (var item in Model.PageList)
+        {
+            @Html.Partial("_AdminStaticPageListPartial", item)
+        }
+    </table>
+    <button class="Apply">Apply Changes</button>
+</div>
+<div>
+    <h3>Posts Awaiting Approval</h3>
+    <table style="width:100%">
+        <tr>
+        <th>
+            Date Created
+        </th>
+        <th>
+            Blog Title
+        </th>
+        <th>
+            Blog Author
+        </th>
+        </tr>
+        @foreach (var item in Model.BlogList)
+        {
+            @Html.Partial("_AdminBlogListPartial", item)
+        }
+    </table>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $(".Approve").on("click", function () {
+                var r = confirm("Are you sure you want to approve " + this.name + " ?");
+                if (r) {
+                    var BlogId = this.value;
+                    $.ajax({
+                        url: '/Home/ApprovePost',
+                        type: 'POST',
+                        data: "BlogId=" + BlogId
+                    });
+
+                    $(this).parent().parent().hide();
+                };
+            });
+            $(".StaticEnable").on("click", function () {
+                var $this = $(this);
+                if (this.value == "Disabled") {
+                    var PageId = this.name;
+                    $.ajax({
+                        url: '/Home/FlipStaticPageEnabledStatus',
+                        type: 'POST',
+                        data:
+                            "PageId=" + PageId +
+                        "&IsEnabled=" + true
+                    });
+                    this.value = "Enabled";
+                    $this.text('Disable');
+
+                } else {
+                   
+                    var PageId = this.name;
+                    $.ajax({
+                        url: '/Home/FlipStaticPageEnabledStatus',
+                        type: 'POST',
+                        data:
+                            "PageId=" + PageId +
+                        "&IsEnabled=" + false
+                    });
+                    this.value = "Disabled";
+                    $this.text('Enable');
+
+                }
+            });
+            $(".Apply").on("click", function () {
+                location.reload(true);
+            });
+      });
+    </script>
+
+}

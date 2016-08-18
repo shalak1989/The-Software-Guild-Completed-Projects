@@ -1,0 +1,17 @@
+﻿@model StingerGamesBlog.Models.Blog
+
+<tr style="border-bottom:1px solid darkblue">
+    <td>
+        @Model.BlogDate
+    </td>
+    <td>
+        @Model.Title
+    </td>
+    <td>
+        @Model.Author
+    </td>
+    <td>
+         <button class="Approve" value="@Model.BlogId" name="@Model.Title">Approve</button>
+    </td>
+   
+</tr>

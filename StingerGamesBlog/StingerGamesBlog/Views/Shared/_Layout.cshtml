@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body style="padding:0;overflow-y:hidden;">
+    <div class="CompanyName">
+        <div style="padding-left:0; height:70px;width:100px; display:inline-block;"><img src="~/Content/Images/StingerLogo.png" style="height:100%; width:100%;" /></div>
+        <a href="~/home/index"><div style=";display:inline-block;"> <h1>Company Blog Name</h1></div></a>
+        <div class="pull-down" style="display:inline-block; ">   
+        </div>
+            <div class="CompanyName" style="width:195px; float:right;">
+                @Html.Partial("_LoginPartial")
+            </div>
+    </div>
+    <div style="clear:both; padding-left:0;position:relative; left:0; " >
+        <div class="CompanyName" style="width:10%; height:100vh; float:left;">
+            @Html.Action("_sideBar", "Home")
+            
+        </div>
+        <div class="body-content" style="padding-bottom:100px; width:75%; height:100vh; float:left; background-color:white; overflow-y:scroll;">
+            <br/>
+            @RenderBody()
+        </div>
+        <div style="width:15%; float:right;">
+            @Html.Partial("_twitterPartial")
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

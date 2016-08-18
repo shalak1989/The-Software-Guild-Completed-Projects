@@ -1,0 +1,19 @@
+﻿@model StingerGamesBlog.Models.StaticPage
+
+<tr style="border-bottom:1px solid darkblue">
+    <td>
+        @Model.PageTitle
+    </td>
+    <td>
+        @if (Model.IsEnabled == false)
+        {
+            <button class="StaticEnable" value="Disabled" name="@Model.PageId">Enable</button>
+        }
+        else
+        {
+            <button class="StaticEnable" value="Enabled" name="@Model.PageId">Disable</button>
+        }
+
+    </td>
+   
+</tr>

@@ -1,0 +1,21 @@
+﻿@model StingerGamesBlog.Models.TinyMCEModelVM
+
+<h2>Create New Page</h2>
+
+@using (Html.BeginForm())
+{
+
+    <fieldset>
+        <label>Title</label>
+        @Html.TextBoxFor(model => model.Title)
+        <br/>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Content)
+            @Html.ValidationMessageFor(model => model.Content)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}

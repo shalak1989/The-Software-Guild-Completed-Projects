@@ -1,0 +1,31 @@
+﻿@model StingerGamesBlog.Models.BlogListVM
+
+
+@foreach (var post in Model.BlogList)
+{
+    <div class="BlogPostSummaryPane">
+        <a href="/Home/ViewBlogPost?blogId=@post.BlogId">
+
+            <div style="width:50%; display:inline; float:left;">
+                <h1 class="BlogTitleTrim" style="text-decoration:underline;">@post.Title</h1>
+            </div>
+            <div class="blogInfo">
+                <p>Date: @post.BlogDate.ToShortDateString() Author: @post.Author</p>
+            </div>
+            <div class="blogSummary">
+                @Html.Raw(@post.Content)
+            </div>
+
+
+            <div style="font-size: 15px; font-weight:900; ">...</div>
+        </a>
+        @foreach (var item in @post.Tags)
+        {
+            <a href="~/Home/GetBlogsByHashtag?TagId=@item.TagId">@item.TagName</a>
+        }
+    </div>
+}
+
+
+
+
